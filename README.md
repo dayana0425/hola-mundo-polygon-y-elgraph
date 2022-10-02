@@ -15,6 +15,7 @@ En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece f
 ---
 
 # 🤖 Stack De Tech e Información De Redes
+
 #### Stack De Tech utilizado: 
  - Javascript
  - Next.js
@@ -59,7 +60,9 @@ git clone https://github.com/<YOUR-USERNAME>/hola-mundo-dapp
 ```bash
 yarn install
 ```
+
 ---
+
 # 🛠 Configuración de Entorno y Wallet
 
 ### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy y una de PolygonScan
@@ -79,13 +82,15 @@ yarn install
 ### Fondea tu Cuenta con MATIC de prueba:
 * [Polygon Faucet (Mumbai Network)](https://faucet.polygon.technology/)
 
-### Entrono (ENV)
+### Entrono (.env):
 ```bash
 # Copy ENV File
 cp .env.example .env.local
 * Agregue las claves que guardó en el archivo `.env`
+```
 
 ---
+
 # 📱 Ejecutar frontend en host local
 
 * En la misma ventana, ejecutar el comando `yarn dev`
@@ -94,18 +99,20 @@ cp .env.example .env.local
 yarn dev
 ```
 * Abre http://localhost:3000 para ver la interfaz de la aplicación!
-* Listo! 💘
   
 ---
+
 # 🚀 Despliega tu front-end en Vercel!
 [Clic Para Desplegar](https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app)
 
 ---
+
 # ❓ Necesitas ayuda?
 * Mándame un mensaje en twitter o telegram: @hello-dayana
 * Abre un Github Issue
 
 ---
+
 # 📚 Recursos
 Solidity: https://docs.soliditylang.org/en/v0.8.15/
 <br/>
@@ -158,7 +165,11 @@ https://www.notion.so/ce46ba1864254908a4f24c3815125262?v=7d9b9a55be0748148b6b9d0
 Notion Template for Hackathons (By Women in Web3):
 https://womeninweb3.notion.site/womeninweb3/Mini-Hack-Community-Template-65e5ee56505a49ec8c0a884ca4c63be0
 
+---
+
 # ⭐️ Si te ha gustado este proyecto, ¡dale una estrella!
 ![Figure 3](./images/star.png)
+
+---
 
 # 🚀 WAGMI
