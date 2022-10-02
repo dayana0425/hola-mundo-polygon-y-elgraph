@@ -44,6 +44,24 @@ npm -v
 yarn -v
 git --version
 ```
+### Fork y Clonar
+* Primero, `Fork` este proyecto haciendo clic en el botón de `Fork` en la esquina superior derecha de la página del repositorio.
+![Figure 2](./images/fork.png)
+* Segundo, abre tu terminal y ejecuta el siguiente comando con los nombres que correspondan en tu caso.
+  
+```bash
+git clone https://github.com/<YOUR-USERNAME>/hola-mundo-dapp
+```
+### Instala todas las dependencias del proyecto
+
+* Abre un ventana de terminal y en el directorio raíz instala las dependencias ejecutando `yarn install`
+
+```bash
+yarn install
+```
+---
+# 🛠 Configuración de Entorno y Wallet
+
 ### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy y una de PolygonScan
 * [Metamask](https://metamask.io/) 
    * IMPORTANTE: se recomienda crear una wallet solamente para desarrollo, ¡evita usar tu wallet normal!
@@ -61,27 +79,14 @@ git --version
 ### Fondea tu Cuenta con MATIC de prueba:
 * [Polygon Faucet (Mumbai Network)](https://faucet.polygon.technology/)
 
----
-
-### 👩🏽‍💻 Vamos a Construir! 
-* Primero, `Fork` este proyecto haciendo clic en el botón de `Fork` en la esquina superior derecha de la página del repositorio.
-![Figure 2](./images/fork.png)
-* Segundo, abre tu terminal y ejecuta el siguiente comando con los nombres que correspondan en tu caso.
-  
+### Entrono (ENV)
 ```bash
-git clone https://github.com/<YOUR-USERNAME>/hola-mundo-dapp
-```
+# Copy ENV File
+cp .env.example .env.local
+* Agregue las claves que guardó en el archivo `.env`
+
 ---
-
-### Instala todas las dependencias del proyecto 👷
-
-* Abre un ventana de terminal y en el directorio raíz instala las dependencias ejecutando `yarn install`
-
-```bash
-yarn install
-```
-
-### Ejecutar frontend en host local 📱
+# 📱 Ejecutar frontend en host local
 
 * En la misma ventana, ejecutar el comando `yarn dev`
 
@@ -90,14 +95,13 @@ yarn dev
 ```
 * Abre http://localhost:3000 para ver la interfaz de la aplicación!
 * Listo! 💘
-
+  
 ---
-
-### 🚀 Despliega tu front-end en Vercel!
+# 🚀 Despliega tu front-end en Vercel!
 [Clic Para Desplegar](https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app)
 
 ---
-### ❓ Necesitas ayuda?
+# ❓ Necesitas ayuda?
 * Mándame un mensaje en twitter o telegram: @hello-dayana
 * Abre un Github Issue
 
