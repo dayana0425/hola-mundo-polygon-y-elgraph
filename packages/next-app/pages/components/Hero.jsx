@@ -66,7 +66,7 @@ function Hero() {
             mb={isLargerThanLG ? '0' : '10'}
             onClick={(e) => {
               e.preventDefault();
-              window.location.href='';
+              window.location.href='/create-intro';
               }}
           >
             Encontrar Amigos 🔎

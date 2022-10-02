@@ -1,0 +1,22 @@
+[ 
+  {"name": "Bitcoin", "code": "BTC"}, 
+  {"name": "Ethereum", "code": "ETH"}, 
+  {"name": "Polygon", "code": "MATIC"}, 
+  {"name": "Tron", "code": "TRX"}, 
+  {"name": "Avalanche", "code": "AVAX"}, 
+  {"name": "Litecoin", "code": "LTC"}, 
+  {"name": "NEAR Protocol", "code": "NEAR"}, 
+  {"name": "Algorand", "code": "ALGO"}, 
+  {"name": "ApeCoin", "code": "APE"},
+  {"name": "BNB", "code": "BNB"}, 
+  {"name": "XRP", "code": "XRP"}, 
+  {"name": "Cardano", "code": "ADA"}, 
+  {"name": "Solana", "code": "SOL"}, 
+  {"name": "Dogecoin", "code": "DOGE"},
+  {"name": "Polkadot", "code": "DOT"}, 
+  {"name": "Shiba Inu", "code": "SHIB"},
+  {"name": "Tether", "code": "USDT"}, 
+  {"name": "USD Coin", "code": "USDC"}, 
+  {"name": "Binance USD", "code": "BUSD"}, 
+  {"name": "Dai", "code": "DAI"}
+]
