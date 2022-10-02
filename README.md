@@ -32,12 +32,12 @@ En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece f
 
 # 🏄‍♂️ Inicio Rápido
 
-### Antes de clonar este proyecto, asegúrate de tener instalado lo siguiente en tu máquina (en este orden)!
+#### Antes de clonar este proyecto, asegúrate de tener instalado lo siguiente en tu máquina (en este orden)!
 * [Node.js](https://nodejs.org/en/) 
 * [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 * [Git](https://git-scm.com/downloads)
 
-### Puedes verificar ejecutando estos comandos en tu terminal para revisar si ya los tienes instalados:
+#### Puedes verificar ejecutando estos comandos en tu terminal para revisar si ya los tienes instalados:
 
 ```bash
 node -v
@@ -45,7 +45,7 @@ npm -v
 yarn -v
 git --version
 ```
-### Fork y Clonar
+#### Fork y Clonar
 * Primero, `Fork` este proyecto haciendo clic en el botón de `Fork` en la esquina superior derecha de la página del repositorio.
 ![Figure 2](./images/fork.png)
 * Segundo, abre tu terminal y ejecuta el siguiente comando con los nombres que correspondan en tu caso.
@@ -53,7 +53,7 @@ git --version
 ```bash
 git clone https://github.com/<YOUR-USERNAME>/hola-mundo-dapp
 ```
-### Instala todas las dependencias del proyecto
+#### Instala todas las dependencias del proyecto
 
 * Abre un ventana de terminal y en el directorio raíz instala las dependencias ejecutando `yarn install`
 
@@ -65,7 +65,7 @@ yarn install
 
 # 🛠 Configuración de Entorno y Wallet
 
-### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy y una de PolygonScan
+#### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy y una de PolygonScan
 * [Metamask](https://metamask.io/) 
    * IMPORTANTE: se recomienda crear una wallet solamente para desarrollo, ¡evita usar tu wallet normal!
    * Guarda la llave privada de esta wallet de desarrollo en tus notas. 
@@ -76,13 +76,13 @@ yarn install
   * Genera una clave api GRATIS.
   * Guarda tu clave en tus notas.
 
-### Agrega las redes Testnet para Polygon Mumbai en Metamask:
+#### Agrega las redes Testnet para Polygon Mumbai en Metamask:
 * Cómo agregar Polygon Mumbai Testnet en Metamask: https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/
 
-### Fondea tu Cuenta con MATIC de prueba:
+#### Fondea tu Cuenta con MATIC de prueba:
 * [Polygon Faucet (Mumbai Network)](https://faucet.polygon.technology/)
 
-### Entrono (.env):
+#### Entrono (.env):
 ```bash
 # Copy ENV File
 cp .env.example .env.local
