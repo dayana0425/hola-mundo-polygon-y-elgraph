@@ -27,6 +27,8 @@ En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece f
  - Ethers.js
 #### Red de Blockchain: 
  - Polygon Mumbai: https://mumbai.polygonscan.com/
+ #### Otras Características: 
+ - Monorepo
   
  ---
 
