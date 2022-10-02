@@ -1,5 +1,5 @@
 {
-  "name": "@web3-starter-kit/monorepo",
+  "name": "@hola-mundo-dapp/monorepo",
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
@@ -15,18 +15,18 @@
     "yarn"
   ],
   "scripts": {
-    "next-app:build": "yarn workspace @web3-starter-kit/next-app build",
-    "next-app:start": "yarn workspace @web3-starter-kit/next-app start",
-    "next-app:dev": "yarn workspace @web3-starter-kit/next-app dev",
-    "build": "yarn workspace @web3-starter-kit/next-app build",
-    "start": "yarn workspace @web3-starter-kit/next-app start",
-    "dev": "yarn workspace @web3-starter-kit/next-app dev",
-    "fork": "yarn workspace @web3-starter-kit/hardhat fork",
-    "node": "yarn workspace @web3-starter-kit/hardhat chain",
-    "test": "yarn workspace @web3-starter-kit/hardhat test",
-    "compile": "yarn workspace @web3-starter-kit/hardhat compile",
-    "deploy": "yarn workspace @web3-starter-kit/hardhat deploy",
-    "verify": "yarn workspace @web3-starter-kit/hardhat verify"
+    "next-app:build": "yarn workspace @hola-mundo-dapp/next-app build",
+    "next-app:start": "yarn workspace @hola-mundo-dapp/next-app start",
+    "next-app:dev": "yarn workspace @hola-mundo-dapp/next-app dev",
+    "build": "yarn workspace @hola-mundo-dapp/next-app build",
+    "start": "yarn workspace @hola-mundo-dapp/next-app start",
+    "dev": "yarn workspace @hola-mundo-dapp/next-app dev",
+    "fork": "yarn workspace @hola-mundo-dapp/hardhat fork",
+    "node": "yarn workspace @hola-mundo-dapp/hardhat chain",
+    "test": "yarn workspace @hola-mundo-dapp/hardhat test",
+    "compile": "yarn workspace @hola-mundo-dapp/hardhat compile",
+    "deploy": "yarn workspace @hola-mundo-dapp/hardhat deploy",
+    "verify": "yarn workspace @hola-mundo-dapp/hardhat verify"
   },
   "workspaces": [
     "packages/*"
