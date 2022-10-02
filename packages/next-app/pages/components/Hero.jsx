@@ -7,7 +7,6 @@ import {
   Stack,
   Img,
   Spacer,
-  Grid,
   SimpleGrid,
   useMediaQuery
 } from "@chakra-ui/react";
@@ -39,7 +38,7 @@ function Hero() {
           </Flex>
           {/* DESCRIPTION */}
           <Text mb="5" fontSize={isLargerThanLG ? 'lg' : 'base'} opacity={0.7}>
-          ¡Una aplicación para saludar y presentarte al mundo! Encuentra nuevos amigos en la Blockchain.
+            Una aplicación para enviar y recibir saludos!
           </Text>
           <Stack direction='row' spacing={4}>
           {/* GREET THE WORLD */}
