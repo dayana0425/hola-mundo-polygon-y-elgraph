@@ -4,6 +4,7 @@ import {
   Flex,
   Box,
   Button,
+  Stack,
   Img,
   Spacer,
   useMediaQuery
@@ -39,21 +40,38 @@ function Hero() {
         <Text mb="5" fontSize={isLargerThanLG ? 'lg' : 'base'} opacity={0.7}>
         ¡Una aplicación para saludar y presentarte al mundo! Encuentra nuevos amigos en la Blockchain.
         </Text>
+        <Stack direction='row' spacing={4}>
         {/* GREET THE WORLD */}
-        <Button
-          w="200px"
-          colorScheme="blue"
-          variant="solid"
-          h="50px"
-          size={isLargerThanLG ? 'lg' : 'md'}
-          mb={isLargerThanLG ? '0' : '10'}
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href='';
-            }}
-        >
-          Saluda al Mundo 👋
-        </Button>
+          <Button
+            w="200px"
+            colorScheme="blue"
+            variant="solid"
+            h="50px"
+            size={isLargerThanLG ? 'lg' : 'md'}
+            mb={isLargerThanLG ? '0' : '10'}
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='';
+              }}
+          >
+            Saluda al Mundo 👋
+          </Button>
+          {/* FIND FRENS */}
+          <Button
+            w="200px"
+            colorScheme="blue"
+            variant="solid"
+            h="50px"
+            size={isLargerThanLG ? 'lg' : 'md'}
+            mb={isLargerThanLG ? '0' : '10'}
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='';
+              }}
+          >
+            Encontrar Amigos 🔎
+          </Button>
+        </Stack>
       </Box>
       <Spacer />
       {/* IMAGE */}
