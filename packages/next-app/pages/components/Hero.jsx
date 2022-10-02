@@ -7,6 +7,8 @@ import {
   Stack,
   Img,
   Spacer,
+  Grid,
+  SimpleGrid,
   useMediaQuery
 } from "@chakra-ui/react";
 import React from "react";
@@ -68,16 +70,13 @@ function Hero() {
         </Flex>
       </Flex>
       {/* DASHBOARD */}
-      <ul
-        role="list"
-        className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
-      >
-        <section className="py-12">
-          <Flex>
-            <Card/>
-          </Flex>
-        </section>
-      </ul>
+      <SimpleGrid minChildWidth='300px' spacing='40px'>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+      </SimpleGrid>
+
     </div>
   );
 }
