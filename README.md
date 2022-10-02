@@ -18,6 +18,7 @@ En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece f
 
 #### Stack De Tech utilizado: 
  - Javascript
+ - React
  - Next.js
  - Tailwind CSS 
  - Chakra UI
