@@ -17,19 +17,31 @@ import {
     Stack,
     Textarea,
     VStack,
-    useColorModeValue
-  } from '@chakra-ui/react';
+    useColorModeValue,
+    useToast
+} from '@chakra-ui/react';
   import Navbar from "./components/Navbar";
   import Header from "./Header";
 
-  import React from 'react';
+  import React, { useEffect } from 'react';
 
   import { BsPerson } from 'react-icons/bs';
   import countriesJSON from '../data/countries.json';
   import cryptocurrenciesJSON from '../data/cryptocurrencies.json';
 
-  export default function ContactFormWithSocialButtons() {
+  export default function Form() {
+    const toast = useToast();
     const countries = JSON.parse(JSON.stringify(countriesJSON));
+    useEffect(() => {
+        toast({
+          title: "Connect Wallet",
+          description: "Connect to Polygon Mumbai",
+          status: "info",
+          duration: 4000,
+          isClosable: false,
+          position: "bottom-right",
+        });
+      }, []);
     return (
     <div>
     <Header/>
@@ -43,9 +55,10 @@ import {
           m={{ base: 5, md: 16, lg: 10 }}
           p={{ base: 5, lg: 16 }}>
           <Box>
-            <VStack spacing={{ base: 4, md: 8, lg: 20 }}>
+            <VStack spacing={{ base: 2, md: 4, lg: 8 }}>
               {/* TITLE */}
               <Heading
+                className={"text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"}
                 fontSize={{
                   base: '3xl',
                   md: '5xl',

@@ -7,7 +7,7 @@ import { wagmiClient, chains } from "../helpers/rainbowSetup";
 
 function MyApp({ Component, pageProps }) {
   const appInfo = {
-    appName: "🦄Web3 Starter Kit",
+    appName: "Hola Mundo",
   };
 
   return (
