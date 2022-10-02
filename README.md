@@ -155,6 +155,6 @@ Notion Template for Hackathons (By Women in Web3):
 https://womeninweb3.notion.site/womeninweb3/Mini-Hack-Community-Template-65e5ee56505a49ec8c0a884ca4c63be0
 
 # ⭐️ Si te ha gustado este proyecto, ¡dale una estrella!
-![Figure 3](./images/Star.png)
+![Figure 3](./images/star.png)
 
 # 🚀 WAGMI
