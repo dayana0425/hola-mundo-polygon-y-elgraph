@@ -11,28 +11,21 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 module.exports = {
-  solidity: "0.8.10",
+  solidity: "0.8.13",
   defaultNetwork: "mumbai",
   networks: {
     hardhat: {
       chainId: 1337,
     },
-    mainnet: {
-      url: `${process.env.MUMBAI_ALCHEMY_KEY}`,
-      accounts: [`0x${process.env.PK}`],
-    },
-    rinkeby: {
-      url: `${process.env.RINKEBY_ALCHEMY_KEY}`,
-      accounts: [`0x${process.env.PK}`],
-    },
     mumbai: {
-      url: `${process.env.MUMBAI_ALCHEMY_KEY}`,
-      accounts: [`0x${process.env.PK}`],
-    },
-    polygon: {
-      url: `${process.env.POLYGON_ALCHEMY_KEY}`,
-      accounts: [`0x${process.env.PK}`],
-    },
+      url: process.env.MUMBAI_ALCHEMY_API_URL,
+      accounts: {
+        mnemonic: process.env.ADMIN_WALLET_SEED,
+      },
+      // accounts: process.env.PK !== undefined ? [process.env.PK] : [],
+      gas: 2100000,
+      gasPrice: 8000000000
+    }
   },
   abiExporter: {
     path: "../next-app/contracts/ABI",

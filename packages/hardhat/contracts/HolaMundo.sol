@@ -1,9 +1,6 @@
 //SPDX-License-Identifier: MIT
-import "hardhat/console.sol"; 
 
-// ESP: establecer la versión del compilador
-// EN: setting the compiler version
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.12;
 
 contract HolaMundo {
     // Events for communicating with our Subgraph
