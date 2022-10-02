@@ -15,8 +15,10 @@ En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece f
 ---
 
 # 🤖 Stack De Tech e Información De Redes
+
 #### Stack De Tech utilizado: 
  - Javascript
+ - React
  - Next.js
  - Tailwind CSS 
  - Chakra UI
@@ -26,17 +28,19 @@ En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece f
  - Ethers.js
 #### Red de Blockchain: 
  - Polygon Mumbai: https://mumbai.polygonscan.com/
+ #### Otras características: 
+ - Monorepo
   
  ---
 
 # 🏄‍♂️ Inicio Rápido
 
-### Antes de clonar este proyecto, asegúrate de tener instalado lo siguiente en tu máquina (en este orden)!
+#### Antes de clonar este proyecto, asegúrate de tener instalado lo siguiente en tu máquina (en este orden)!
 * [Node.js](https://nodejs.org/en/) 
 * [Yarn](https://classic.yarnpkg.com/en/docs/install/)
 * [Git](https://git-scm.com/downloads)
 
-### Puedes verificar ejecutando estos comandos en tu terminal para revisar si ya los tienes instalados:
+#### Puedes verificar ejecutando estos comandos en tu terminal para revisar si ya los tienes instalados:
 
 ```bash
 node -v
@@ -44,7 +48,7 @@ npm -v
 yarn -v
 git --version
 ```
-### Fork y Clonar
+#### Fork y Clonar
 * Primero, `Fork` este proyecto haciendo clic en el botón de `Fork` en la esquina superior derecha de la página del repositorio.
 ![Figure 2](./images/fork.png)
 * Segundo, abre tu terminal y ejecuta el siguiente comando con los nombres que correspondan en tu caso.
@@ -52,17 +56,19 @@ git --version
 ```bash
 git clone https://github.com/<YOUR-USERNAME>/hola-mundo-dapp
 ```
-### Instala todas las dependencias del proyecto
+#### Instala todas las dependencias del proyecto
 
 * Abre un ventana de terminal y en el directorio raíz instala las dependencias ejecutando `yarn install`
 
 ```bash
 yarn install
 ```
+
 ---
+
 # 🛠 Configuración de Entorno y Wallet
 
-### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy y una de PolygonScan
+#### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy y una de PolygonScan
 * [Metamask](https://metamask.io/) 
    * IMPORTANTE: se recomienda crear una wallet solamente para desarrollo, ¡evita usar tu wallet normal!
    * Guarda la llave privada de esta wallet de desarrollo en tus notas. 
@@ -73,19 +79,21 @@ yarn install
   * Genera una clave api GRATIS.
   * Guarda tu clave en tus notas.
 
-### Agrega las redes Testnet para Polygon Mumbai en Metamask:
+#### Agrega las redes Testnet para Polygon Mumbai en Metamask:
 * Cómo agregar Polygon Mumbai Testnet en Metamask: https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/
 
-### Fondea tu Cuenta con MATIC de prueba:
+#### Fondea tu Cuenta con MATIC de prueba:
 * [Polygon Faucet (Mumbai Network)](https://faucet.polygon.technology/)
 
-### Entrono (ENV)
+#### Entrono (.env):
 ```bash
 # Copy ENV File
 cp .env.example .env.local
 * Agregue las claves que guardó en el archivo `.env`
+```
 
 ---
+
 # 📱 Ejecutar frontend en host local
 
 * En la misma ventana, ejecutar el comando `yarn dev`
@@ -94,18 +102,20 @@ cp .env.example .env.local
 yarn dev
 ```
 * Abre http://localhost:3000 para ver la interfaz de la aplicación!
-* Listo! 💘
   
 ---
+
 # 🚀 Despliega tu front-end en Vercel!
 [Clic Para Desplegar](https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app)
 
 ---
+
 # ❓ Necesitas ayuda?
 * Mándame un mensaje en twitter o telegram: @hello-dayana
 * Abre un Github Issue
 
 ---
+
 # 📚 Recursos
 Solidity: https://docs.soliditylang.org/en/v0.8.15/
 <br/>
@@ -158,7 +168,11 @@ https://www.notion.so/ce46ba1864254908a4f24c3815125262?v=7d9b9a55be0748148b6b9d0
 Notion Template for Hackathons (By Women in Web3):
 https://womeninweb3.notion.site/womeninweb3/Mini-Hack-Community-Template-65e5ee56505a49ec8c0a884ca4c63be0
 
+---
+
 # ⭐️ Si te ha gustado este proyecto, ¡dale una estrella!
 ![Figure 3](./images/star.png)
+
+---
 
 # 🚀 WAGMI
