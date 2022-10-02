@@ -63,7 +63,7 @@ git --version
 
 ---
 
-### Vamos a Construir!
+### 👩🏽‍💻 Vamos a Construir! 
 * Primero, `Fork` este proyecto haciendo clic en el botón de `Fork` en la esquina superior derecha de la página del repositorio.
 ![Figure 2](./images/fork.png)
 * Segundo, abre tu terminal y ejecuta el siguiente comando con los nombres que correspondan en tu caso.
