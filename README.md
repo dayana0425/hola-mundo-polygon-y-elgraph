@@ -9,7 +9,7 @@
 <p>
 Un proyecto inicial para configurar rápidamente la creación de tu DApp en Polygon y con el Graph. 
 
-En este ejemplo, el DApp es para enviar y recibir saludos en la Blockchain! Puedes filtrar por diferentes atributos para encontrar personas a las que quieras saludar.
+En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece filtrado usando GraphQL para que pueda filtrar entre todos los usuarios para encontrar una persona específica a la que desea saludar.
 </p>
 
 ---
