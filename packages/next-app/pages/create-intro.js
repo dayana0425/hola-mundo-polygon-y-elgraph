@@ -5,7 +5,6 @@ import {
     FormControl,
     FormLabel,
     Heading,
-    IconButton,
     Select,
     NumberInput,
     NumberInputStepper,
@@ -15,27 +14,30 @@ import {
     Input,
     InputGroup,
     InputLeftElement,
-    Link,
     Stack,
     Textarea,
-    Tooltip,
-    useClipboard,
-    useColorModeValue,
     VStack,
+    useColorModeValue
   } from '@chakra-ui/react';
+  import Navbar from "./components/Navbar";
+  import Header from "./Header";
+
   import React from 'react';
-  import { BsGithub, BsLinkedin, BsPerson, BsTwitter } from 'react-icons/bs';
-  import { MdEmail, MdOutlineEmail } from 'react-icons/md';
+
+  import { BsPerson } from 'react-icons/bs';
   import countriesJSON from '../data/countries.json';
   import cryptocurrenciesJSON from '../data/cryptocurrencies.json';
 
   export default function ContactFormWithSocialButtons() {
     const countries = JSON.parse(JSON.stringify(countriesJSON));
     return (
+    <div>
+    <Header/>
+    <Navbar/>
       <Flex
         align="center"
         justify="center"
-        id="contact">
+        id="intro">
         <Box
           borderRadius="lg"
           m={{ base: 5, md: 16, lg: 10 }}
@@ -86,7 +88,7 @@ import {
                     {/* FIELD: PAÍS*/}
                     <FormControl isRequired>
                       <FormLabel>País</FormLabel>
-                        <Select placeholder='Selecciona país'>
+                        <Select placeholder='Selecciona País'>
                             {countries.map((country) => {
                                 return (<option key={country.code}>{country.name}</option>);
                             })}
@@ -95,7 +97,7 @@ import {
                     {/* FIELD: CRIPTO*/}
                     <FormControl isRequired>
                       <FormLabel>¿Cuál Es Tu Criptomoneda Favorita?</FormLabel>
-                      <Select placeholder='Selecciona criptomoneda'>
+                      <Select placeholder='Selecciona Criptomoneda'>
                             {cryptocurrenciesJSON.map((crypto) => {
                                 return (<option key={crypto.code}>{crypto.name}</option>);
                             })}
@@ -129,5 +131,6 @@ import {
           </Box>
         </Box>
       </Flex>
+    </div>
     );
   }
