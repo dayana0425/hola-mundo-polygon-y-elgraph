@@ -26,7 +26,14 @@
     "dev": "yarn workspace @hola-mundo-dapp/next-app dev",
     "node": "yarn workspace @hola-mundo-dapp/hardhat chain",
     "compile": "yarn workspace @hola-mundo-dapp/hardhat compile",
-    "deploy": "yarn workspace @hola-mundo-dapp/hardhat deploy"
+    "deploy": "yarn workspace @hola-mundo-dapp/hardhat deploy",
+    "subgraph:codegen": "yarn workspace @@hola-mundo-dapp/subgraph codegen",
+    "subgraph:build": "yarn workspace @@hola-mundo-dapp/subgraph build",
+    "subgraph:deploy": "yarn workspace @@hola-mundo-dapp/subgraph deploy",
+    "subgraph:create-local": "yarn workspace @@hola-mundo-dapp/subgraph create-local",
+    "subgraph:remove-local": "yarn workspace @@hola-mundo-dapp/subgraph remove-local",
+    "subgraph:deploy-local": "yarn workspace @@hola-mundo-dapp/subgraph deploy-local",
+    "subgraph:test": "yarn workspace @@hola-mundo-dapp/subgraph test"
   },
   "workspaces": [
     "packages/*"

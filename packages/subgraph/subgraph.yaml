@@ -1,0 +1,26 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: mumbai
+    source:
+      address: "0xB528596E54d3fcd239cEe4e09B55d986EA0a2c17"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - NewGreetingCreated
+        - RecievedGreeting
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: NewGreetingCreated(bytes32,string,address,uint256)
+          handler: handleNewGreetingCreated
+        - event: RecievedGreeting(bytes32,address)
+          handler: handleRecievedGreeting
+      file: ./src/contract.ts
