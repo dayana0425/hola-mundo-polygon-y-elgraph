@@ -26,7 +26,7 @@ import {
   // React 
   import React, { useState, useEffect } from "react";
   // Wagmi 
-  import { useAccount, useNetwork, useContract, useProvider, useSigner } from 'wagmi';
+  import { useContract, useSigner } from 'wagmi';
   // Icon
   import { BsPerson } from 'react-icons/bs';
   // Data
@@ -39,10 +39,10 @@ import {
   import contractABI from '../contracts/ABI/HolaMundo.json';
 
   export default function Form() {
-
+    // Chakura-UI Toast Messages
     const toast = useToast();
-    const countries = JSON.parse(JSON.stringify(countriesJSON));
 
+    // Toast For Every Page Render
     useEffect(() => {
         toast({
           title: "Connect Wallet",
@@ -63,6 +63,7 @@ import {
     const [personCountry, setCountry] = useState("");
     const [faveCrypto, setCrypto] = useState("");
     const [message, setMessage] = useState("");
+
     // Connect To Contract
     const signer = useSigner();
     const contractOnMumbai = useContract({
@@ -71,7 +72,7 @@ import {
       signerOrProvider: signer.data,
     });
 
-    // toast for transaction states
+    // Toasts for Transaction States
     useEffect(() => {
       if(success) {
         toast({
@@ -93,19 +94,21 @@ import {
       }
     }, [success, loading]);
 
+    // Handle Submit
     async function handleSubmit(e) {
       e.preventDefault();
-      console.log("Handle Submit: ", personName, personAge, personCountry, faveCrypto, message);
 
       const body = {
         name: personName,
         age: personAge,
         country: personCountry,
         crypto: faveCrypto,
+        formMessage: message,
         image: getRandomImage()
       };
 
       try {
+        // Save Form Details In IPFS
         const response = await fetch("/api/store-greeting", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -113,43 +116,39 @@ import {
         });
 
         if (response.status !== 200) {
-          alert("Oops! Something went wrong. Please refresh and try again.");
+          alert("Oops! Something went wrong. Please refresh & try again.");
         } else {
-          console.log("Saved in IPFS!");
           let responseJSON = await response.json();
-          await callCreateGreeting(responseJSON.cid);
+          await createGreeting(responseJSON.cid);
+          console.log("Saved in IPFS: ", responseJSON.cid);
         }
       } catch (error) {
-        alert(
-          `Oops! Something went wrong. Please refresh and try again. Error ${error}`
-        );
+        alert("Oops! Something went wrong. Please refresh & try again.");
       }
     }
 
-    const callCreateGreeting = async (cid) => {
+    // Create Greeting
+    const createGreeting = async (cid) => {
       try {
+        // Reset
+        setSuccess(false)
+        setLoading(false)
         if (contractOnMumbai) {
-          setSuccess(false)
-          setLoading(false)
-          const txn = await contractOnMumbai.createNewGreeting(
-            cid,
-            { gasLimit: 900000 }
-          );
+          // Calling smart contract function: createNewGreeting
+          const txn = await contractOnMumbai.createNewGreeting(cid,{ gasLimit: 900000 });
           setLoading(true);
-          console.log("Minting...", txn.hash);
-          let wait = await txn.wait();
-          console.log("Minted -- ", txn.hash);
-          console.log(wait);
+          await txn.wait();
           setLoading(false);
           setSuccess(true);
         } else {
-          console.log("Error getting contract.");
+          alert("Oops! Something went wrong. Please refresh & try again.");
         }
       } catch (error) {
-        console.log(error);
+        alert("Oops! Something went wrong. Please refresh & try again.");
       }
     };
 
+    // UI
     return (
     <div>
     <Header/>
@@ -220,7 +219,7 @@ import {
                         <Select
                         onChange={(e) => setCountry(e.target.value)}
                         placeholder='Selecciona País'>
-                            {countries.map((country) => {
+                            {countriesJSON.map((country) => {
                                 return (<option key={country.code}>{country.name}</option>);
                             })}
                         </Select>
