@@ -85,12 +85,15 @@ yarn install
 #### Fondea tu Cuenta con MATIC de prueba:
 * [Polygon Faucet (Mumbai Network)](https://faucet.polygon.technology/)
 
-#### Entrono (.env):
+#### Configurar Variables de Entorno:
+
 ```bash
-# Copy ENV File
+# navegue a la carpeta 'hardhat'
+cd packages/hardhat 
+# copie el contenido dentro de .env.example a .env.local
 cp .env.example .env.local
-* Agregue las claves que guardó en el archivo `.env`
 ```
+* Agregue las claves que guardó en el archivo `.env.local`
 
 ---
 
@@ -102,7 +105,7 @@ cp .env.example .env.local
 yarn dev
 ```
 * Abre http://localhost:3000 para ver la interfaz de la aplicación!
-  
+
 ---
 
 # 🚀 Despliega tu front-end en Vercel!
