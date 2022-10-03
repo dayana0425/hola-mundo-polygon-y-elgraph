@@ -19,10 +19,10 @@ module.exports = {
     },
     mumbai: {
       url: process.env.MUMBAI_ALCHEMY_API_URL,
+      // accounts: process.env.PK !== undefined ? [process.env.PK] : [],
       accounts: {
         mnemonic: process.env.ADMIN_WALLET_SEED,
       },
-      // accounts: process.env.PK !== undefined ? [process.env.PK] : [],
       gas: 2100000,
       gasPrice: 8000000000
     }

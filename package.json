@@ -21,12 +21,9 @@
     "build": "yarn workspace @hola-mundo-dapp/next-app build",
     "start": "yarn workspace @hola-mundo-dapp/next-app start",
     "dev": "yarn workspace @hola-mundo-dapp/next-app dev",
-    "fork": "yarn workspace @hola-mundo-dapp/hardhat fork",
     "node": "yarn workspace @hola-mundo-dapp/hardhat chain",
-    "test": "yarn workspace @hola-mundo-dapp/hardhat test",
     "compile": "yarn workspace @hola-mundo-dapp/hardhat compile",
     "deploy": "yarn workspace @hola-mundo-dapp/hardhat deploy",
-    "verify": "yarn workspace @hola-mundo-dapp/hardhat verify"
   },
   "workspaces": [
     "packages/*"
