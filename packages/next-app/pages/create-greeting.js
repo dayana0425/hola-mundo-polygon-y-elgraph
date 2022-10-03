@@ -1,3 +1,4 @@
+// Chakra UI
 import {
     Box,
     Button,
@@ -22,16 +23,26 @@ import {
 } from '@chakra-ui/react';
   import Navbar from "./components/Navbar";
   import Header from "./Header";
-
-  import React, { useEffect } from 'react';
-
+  // React 
+  import React, { useState, useEffect } from "react";
+  // Wagmi 
+  import { useAccount, useNetwork, useContract, useProvider, useSigner } from 'wagmi';
+  // Icon
   import { BsPerson } from 'react-icons/bs';
+  // Data
   import countriesJSON from '../data/countries.json';
   import cryptocurrenciesJSON from '../data/cryptocurrencies.json';
+  // Helper
+  import getRandomImage from "../helpers/getRandomImage";
+  // Address + ABI 
+  import { contractAddress } from '../utils/contractAddress.js';
+  import contractABI from '../contracts/ABI/HolaMundo.json';
 
   export default function Form() {
+
     const toast = useToast();
     const countries = JSON.parse(JSON.stringify(countriesJSON));
+
     useEffect(() => {
         toast({
           title: "Connect Wallet",
@@ -42,6 +53,75 @@ import {
           position: "bottom-right",
         });
       }, []);
+
+    const [personName, setName] = useState("");
+    const [personAge, setAge] = useState("");
+    const [personCountry, setCountry] = useState("");
+    const [faveCrypto, setCrypto] = useState("");
+    const [message, setMessage] = useState("");
+
+    const { data: account } = useAccount();
+    const { chain } = useNetwork();
+    const signer = useSigner();
+    const provider = useProvider();
+
+    const contractOnMumbai = useContract({
+      addressOrName: contractAddress,
+      contractInterface: contractABI,
+      signerOrProvider: signer.data,
+    });
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      console.log("Handle Submit: ", personName, personAge, personCountry, faveCrypto, message);
+
+      const body = {
+        name: personName,
+        age: personAge,
+        country: personCountry,
+        crypto: faveCrypto,
+        image: getRandomImage()
+      };
+
+      try {
+        const response = await fetch("/api/store-greeting", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+
+        if (response.status !== 200) {
+          alert("Oops! Something went wrong. Please refresh and try again.");
+        } else {
+          console.log("Form successfully submitted!");
+          let responseJSON = await response.json();
+          await callCreateGreeting(responseJSON.cid);
+        }
+      } catch (error) {
+        alert(
+          `Oops! Something went wrong. Please refresh and try again. Error ${error}`
+        );
+      }
+    }
+
+    const callCreateGreeting = async (cid) => {
+      try {
+        if (contractOnMumbai) {
+          const txn = await contractOnMumbai.createNewGreeting(
+            cid,
+            { gasLimit: 900000 }
+          );
+          console.log("Minting...", txn.hash);
+          let wait = await txn.wait();
+          console.log(wait);
+        } else {
+          console.log("Error getting contract.");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     return (
     <div>
     <Header/>
@@ -84,14 +164,22 @@ import {
                         <InputLeftElement>
                             <BsPerson />
                         </InputLeftElement>
-                        <Input type="text" name="name" placeholder="Su Nombre"/>
+                        <Input 
+                          type="text" 
+                          name="name" 
+                          placeholder="Su Nombre"
+                          onChange={(e) => setName(e.target.value)}
+                        />
                       </InputGroup>
                     </FormControl>
                     {/* FIELD: EDAD */}
                     <FormControl isRequired>
                       <FormLabel>Edad</FormLabel>
-                      <NumberInput allowMouseWheel="true" max={110} min={1} defaultValue="1">
-                        <NumberInputField />
+                      <NumberInput 
+                        allowMouseWheel="true" 
+                        max={110} min={1} 
+                        defaultValue="1">
+                        <NumberInputField onChange={(e) => setAge(e.target.value)}/>
                         <NumberInputStepper>
                         <NumberIncrementStepper />
                         <NumberDecrementStepper />
@@ -101,7 +189,9 @@ import {
                     {/* FIELD: PAÍS*/}
                     <FormControl isRequired>
                       <FormLabel>País</FormLabel>
-                        <Select placeholder='Selecciona País'>
+                        <Select
+                        onChange={(e) => setCountry(e.target.value)}
+                        placeholder='Selecciona País'>
                             {countries.map((country) => {
                                 return (<option key={country.code}>{country.name}</option>);
                             })}
@@ -110,7 +200,9 @@ import {
                     {/* FIELD: CRIPTO*/}
                     <FormControl isRequired>
                       <FormLabel>¿Cuál Es Tu Criptomoneda Favorita?</FormLabel>
-                      <Select placeholder='Selecciona Criptomoneda'>
+                      <Select 
+                      onChange={(e) => setCrypto(e.target.value)}
+                      placeholder='Selecciona Criptomoneda'>
                             {cryptocurrenciesJSON.map((crypto) => {
                                 return (<option key={crypto.code}>{crypto.name}</option>);
                             })}
@@ -120,6 +212,7 @@ import {
                     <FormControl isRequired>
                       <FormLabel>Mensaje</FormLabel>
                       <Textarea
+                        onChange={(e) => setMessage(e.target.value)}
                         name="Message"
                         placeholder="Tu Mensaje"
                         rows={6}
@@ -134,7 +227,7 @@ import {
                       _hover={{
                         bg: 'blue.500',
                       }}
-                      isFullWidth>
+                      onClick={(e)=> handleSubmit(e)}>
                       Crear Saludo
                     </Button>
                   </VStack>
