@@ -10,9 +10,12 @@
     "hardhat",
     "rainbow",
     "polygon",
-    "uniswap",
-    "workspaces",
-    "yarn"
+    "graph",
+    "monorepo",
+    "yarn",
+    "wagmi",
+    "starter",
+    "boilerplate"
   ],
   "scripts": {
     "next-app:build": "yarn workspace @hola-mundo-dapp/next-app build",
@@ -23,7 +26,7 @@
     "dev": "yarn workspace @hola-mundo-dapp/next-app dev",
     "node": "yarn workspace @hola-mundo-dapp/hardhat chain",
     "compile": "yarn workspace @hola-mundo-dapp/hardhat compile",
-    "deploy": "yarn workspace @hola-mundo-dapp/hardhat deploy",
+    "deploy": "yarn workspace @hola-mundo-dapp/hardhat deploy"
   },
   "workspaces": [
     "packages/*"
