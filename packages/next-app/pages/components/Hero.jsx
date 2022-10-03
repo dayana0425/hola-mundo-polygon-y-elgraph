@@ -51,7 +51,7 @@ function Hero() {
               mb={isLargerThanLG ? '0' : '10'}
               onClick={(e) => {
                 e.preventDefault();
-                window.location.href='/create-intro';
+                window.location.href='/create-greeting';
                 }}
             >
               Saluda al Mundo 👋

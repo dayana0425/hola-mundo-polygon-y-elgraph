@@ -54,22 +54,47 @@ import {
         });
       }, []);
 
+    // Transaction States
+    const [success, setSuccess] = useState(null);
+    const [toastMessage, setToastMessage] = useState(null);
+    const [loading, setLoading] = useState(null);
+    // Form States
     const [personName, setName] = useState("");
     const [personAge, setAge] = useState("");
     const [personCountry, setCountry] = useState("");
     const [faveCrypto, setCrypto] = useState("");
     const [message, setMessage] = useState("");
-
-    const { data: account } = useAccount();
-    const { chain } = useNetwork();
+    // Connect To Contract
     const signer = useSigner();
-    const provider = useProvider();
-
     const contractOnMumbai = useContract({
       addressOrName: contractAddress,
       contractInterface: contractABI,
       signerOrProvider: signer.data,
     });
+
+    // toast for transaction states
+    useEffect(() => {
+      if(success) {
+        toast({
+          title: "Greeting Created",
+          description: toastMessage,
+          status: "success",
+          duration: 4000,
+          isClosable: false,
+          position: "bottom-right",
+        });
+      }
+      if(loading) {
+        toast({
+          title: "Waiting...",
+          description: toastMessage,
+          status: "loading",
+          duration: 4000,
+          isClosable: false,
+          position: "bottom-right",
+        });
+      }
+    }, [success, toastMessage, loading]);
 
     async function handleSubmit(e) {
       e.preventDefault();
@@ -111,14 +136,22 @@ import {
             cid,
             { gasLimit: 900000 }
           );
+          setLoading(true);
           console.log("Minting...", txn.hash);
           let wait = await txn.wait();
+          console.log("Minted -- ", txn.hash);
           console.log(wait);
+          setSuccess(true);
+          setLoading(false);
+          setToastMessage("Your Greeting Was Successfully Created.");
         } else {
           console.log("Error getting contract.");
         }
       } catch (error) {
         console.log(error);
+        setSuccess(false);
+        setToastMessage(`There was an error creating your Greeting: ${error.message}`);
+        setLoading(false);
       }
     };
 
