@@ -1,8 +1,8 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 features:
-- ipfsOnEthereumContracts
+  - ipfsOnEthereumContracts
 dataSources:
   - kind: ethereum
     name: Contract
@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0xB528596E54d3fcd239cEe4e09B55d986EA0a2c17"
       abi: Contract
-      startBlock: 28420784 
+      startBlock: 28420784
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -20,10 +20,10 @@ dataSources:
         - Recieved
       abis:
         - name: Contract
-          file: ./abis/Contract.json
+          file: Contract/abis/Contract.json
       eventHandlers:
         - event: NewGreetingCreated(bytes32,string,address,uint256)
           handler: handleNewGreetingCreated
         - event: RecievedGreeting(bytes32,address)
           handler: handleRecievedGreeting
-      file: ./src/contract.ts
+      file: Contract/Contract.wasm

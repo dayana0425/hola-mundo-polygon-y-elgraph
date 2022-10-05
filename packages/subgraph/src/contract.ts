@@ -1,51 +1,77 @@
-import { BigInt } from "@graphprotocol/graph-ts"
+import { ipfs, json } from "@graphprotocol/graph-ts";
 import {
-  Contract,
   NewGreetingCreated,
   RecievedGreeting
-} from "../generated/Contract/Contract"
-import { ExampleEntity } from "../generated/schema"
+} from "../generated/Contract/Contract";
+import { Greeting, Recieved } from "../generated/schema";
+import { integer } from "@protofire/subgraph-toolkit";
 
 export function handleNewGreetingCreated(event: NewGreetingCreated): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from.toHex())
+  let newGreeting = Greeting.load(event.params.greetingId.toHex());
+  if (newGreeting == null) {
+    newGreeting = new Greeting(event.params.greetingId.toHex());
+    newGreeting.greetingID = event.params.greetingId;
+    newGreeting.ownerAddress = event.params.greetingOwner;
+    newGreeting.timestamp = event.params.timestamp;
+    newGreeting.totalRecieved = integer.ZERO;
+    newGreeting.totalSent = integer.ZERO;
 
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (!entity) {
-    entity = new ExampleEntity(event.transaction.from.toHex())
-
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0)
-  }
-
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1)
-
-  // Entity fields can be set based on event parameters
-  entity.greetingId = event.params.greetingId
-  entity.greetingDataCID = event.params.greetingDataCID
-
-  // Entities can be written to the store with `.save()`
-  entity.save()
-
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.idToGreeting(...)
+    // fetch data from ipfs
+    let ipfsData = ipfs.cat(event.params.greetingDataCID + "/data.json");
+    if(ipfsData) {
+      const value = json.fromBytes(ipfsData).toObject();
+      if(value) {
+        const name = value.get("name");
+        if (name) {
+          newGreeting.name = name.toString();
+        }
+        const age = value.get("age");
+        if (age) {
+          newGreeting.age = age.toString();
+        }
+        const country = value.get("country");
+        if (country) {
+          newGreeting.country = country.toString();
+        }
+        const crypto = value.get("crypto");
+        if (crypto) {
+          newGreeting.crypto = crypto.toString();
+        }
+        const message = value.get("formMessage");
+        if (message) {
+          newGreeting.message = message.toString();
+        }
+        const imagePath = value.get("image");
+        if (imagePath) {
+          const imageURL = "https://ipfs.io/ipfs/" + event.params.greetingDataCID + imagePath.toString();
+          newGreeting.imageURL = imageURL;
+        } else {
+          const fallbackURL =
+            "https://ipfs.io/ipfs/bafybeibssbrlptcefbqfh4vpw2wlmqfj2kgxt3nil4yujxbmdznau3t5wi/event.png";
+          newGreeting.imageURL = fallbackURL;
+        }
+      }
+    }
+    newGreeting.save();
+  } 
 }
 
-export function handleRecievedGreeting(event: RecievedGreeting): void {}
+export function handleRecievedGreeting(event: RecievedGreeting): void {
+  let id = event.params.greetingId.toHex() + event.params.from.toHex();
+  let newRecieved = Recieved.load(id);
+  let thisGreeting = Greeting.load(event.params.greetingId.toHex());
+
+  if (newRecieved == null && thisGreeting != null) {
+    newRecieved = new Recieved(id);
+    newRecieved.greeting = thisGreeting.id;
+    newRecieved.from = event.params.from;
+    newRecieved.save();
+
+    if(event.params.from === thisGreeting.ownerAddress) {
+      thisGreeting.totalSent = integer.increment(thisGreeting.totalSent);
+    }
+    thisGreeting.totalRecieved = integer.increment(thisGreeting.totalRecieved);
+    thisGreeting.save();
+  }
+}
+
