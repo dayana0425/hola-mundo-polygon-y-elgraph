@@ -107,6 +107,8 @@ import {
         image: getRandomImage()
       };
 
+      console.log("BODY: ", body);
+
       try {
         // Save Form Details In IPFS
         const response = await fetch("/api/store-greeting", {

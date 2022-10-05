@@ -12,8 +12,31 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Card from "./Card";
+import { gql, useQuery } from "@apollo/client";
+import client from "../../helpers/apollo-client";
 
-function Hero() {
+const GREETINGS = gql`
+    query getGreetings {
+        greetings {
+          greetingID
+          ownerAddress
+          country
+          name
+          age
+          message
+          crypto
+          imageURL
+          timestamp
+          totalRecieved
+          totalSent
+        }
+      }
+    `;
+
+function Hero(greeting) {
+  const { loading, error, data } = useQuery(GREETINGS);
+  console.log(loading,data,error);
+
   const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
   return (
     <div>
@@ -70,10 +93,21 @@ function Hero() {
       </Flex>
       {/* DASHBOARD */}
       <SimpleGrid minChildWidth='300px' spacing='40px'>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+        { data && data.greetings.map((greeting) => (
+          <Card
+            key={greeting.greetingID}
+            greetingID={greeting.greetingID}
+            ownerAddress={greeting.ownerAddress}
+            country={greeting.country}
+            name={greeting.name}
+            age={greeting.age}
+            message={greeting.message}
+            crypto={greeting.age}
+            imageURL={greeting.imageURL}
+            timestamp={greeting.timestamp}
+            totalRecieved={greeting.totalRecieved}
+            totalSent={greeting.totalSent}/>
+        ))}
       </SimpleGrid>
 
     </div>

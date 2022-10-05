@@ -13,7 +13,7 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   
-  export default function Card() {
+  export default function Card({ greetingID, ownerAddress, country, name, age, message, crypto, imageURL, timestamp, totalRecieved, totalSent }) {
     return (
       <Center py={6}>
         <Box
@@ -26,9 +26,7 @@ import {
           textAlign={'center'}>
             <Avatar
                 size={'xl'}
-                src={
-                    'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
-                }
+                src={imageURL}
                 alt={'Avatar Alt'}
                 mb={4}
                 pos={'relative'}
@@ -50,34 +48,46 @@ import {
                     <AccordionPanel pb={4}>
                         {/* INFO */}
                         <Text fontWeight={600} color={'gray.600'}>
+                            Greeting ID:
+                        </Text>
+                        <Text color={'gray.500'}>
+                            {greetingID}
+                        </Text>
+                        <Text fontWeight={600} color={'gray.600'}>
+                            Address:
+                        </Text>
+                        <Text color={'gray.500'}>
+                            {ownerAddress}
+                        </Text>
+                        <Text fontWeight={600} color={'gray.600'}>
                             Mi Nombre Es:
                         </Text>
                         <Text color={'gray.500'}>
-                            Dayana
+                            {name}
                         </Text>
                         <Text fontWeight={600} color={'gray.600'}>
                             Años:
                         </Text>
                         <Text color={'gray.500'}>
-                            22
+                            {age}
                         </Text>
                         <Text fontWeight={600} color={'gray.600'}>
                             País:
                         </Text>
                         <Text color={'gray.500'}>
-                            Argentina
+                            {country}
                         </Text>
                         <Text fontWeight={600} color={'gray.600'}>
                             Criptomoneda Favorita:
                         </Text>
                         <Text color={'gray.500'}>
-                            Ethereum
+                            {crypto}
                         </Text>
                         <Text fontWeight={600} color={'gray.600'}>
                             Mensaje:
                         </Text>
                         <Text color={'gray.500'}>
-                            Hehehe
+                            {message}
                         </Text>
                     </AccordionPanel>
                 </AccordionItem>
@@ -87,13 +97,13 @@ import {
             Recibido:
             </Text>
             <Text color={'gray.500'}>
-                50
+                {totalRecieved}
             </Text>
             <Text fontWeight={600} color={'gray.600'}>
                 Enviado:
             </Text>
             <Text color={'gray.500'}>
-                20
+                {totalSent}
             </Text>
             {/* SEND GREETING */}
             <Button
