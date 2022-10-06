@@ -194,10 +194,13 @@ Figma (DApp Wireframes):
 https://www.figma.com/
 </br>
 Notion for File Sharing/Collaborating:
-https://www.notion.so/ce46ba1864254908a4f24c3815125262?v=7d9b9a55be0748148b6b9d0b6e5f3b63
+https://www.notion.so/
 </br>
 Notion Template for Hackathons (By Women in Web3):
 https://womeninweb3.notion.site/womeninweb3/Mini-Hack-Community-Template-65e5ee56505a49ec8c0a884ca4c63be0
+<br/>
+Web3athon Notion:
+https://project-cradl.notion.site/Welcome-to-Web3athon-e0b17fe0a41b441fb33e6154adb5795e
 <br/>
 Visual Studio Code:
 https://code.visualstudio.com/
