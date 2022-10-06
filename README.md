@@ -1,8 +1,7 @@
-# 👋 Hola Mundo DApp - (English/Español)!
-* [Clic para Español 🌈](#spanish)
+# Hola Mundo DApp 👋 
+### Desarrollo de Blockchain de Pila Completa en Español 🌈
 ---
 
-## <a name="spanish">Español 🌈</a>
 ![Figure 1](./images/HolaMundoScreenshot.png)
 
 ---
