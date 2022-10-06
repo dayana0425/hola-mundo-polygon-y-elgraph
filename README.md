@@ -23,6 +23,7 @@ En este proyecto de ejemplo, puede enviar y recibir saludos en Polygon. Ofrece f
  - Tailwind CSS 
  - Chakra UI
  - Rainbow Wallet
+ - Web3 Storage
  - WAGMI
  - Hardhat
  - Ethers.js
