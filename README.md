@@ -146,16 +146,20 @@ yarn dev
 ---
 
 # 📚 Recursos
-30 Dia De Web3: https://www.30daysofweb3.xyz/es/curriculum/1-introducci%C3%B3n/0-bienvenidos
+30 Dia De Web3: 
+https://www.30daysofweb3.xyz/es/curriculum/1-introducci%C3%B3n/0-bienvenidos
 <br/>
-Solidity: https://docs.soliditylang.org/en/v0.8.15/
+Solidity Docs: 
+https://docs.soliditylang.org/en/v0.8.15/
 <br/>
-Solidity Tutorial: Crypto Zombies (Español)
+Solidity Tutorial: 
+Crypto Zombies (Español)
 https://cryptozombies.io/es/course
 <br/>
-Next.js: https://nextjs.org/docs
+Next.js Docs: 
+https://nextjs.org/docs
 <br/>
-Tailwind CSS: https://tailwindcss.com/docs/installation
+Tailwind CSS Docs: https://tailwindcss.com/docs/installation
 <br/>
 Chkra-UI: https://chakra-ui.com/
 <br/>
