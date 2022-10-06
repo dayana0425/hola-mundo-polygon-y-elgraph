@@ -146,13 +146,20 @@ yarn dev
 ---
 
 # 📚 Recursos
+30 Dia De Web3: https://www.30daysofweb3.xyz/es/curriculum/1-introducci%C3%B3n/0-bienvenidos
+<br/>
 Solidity: https://docs.soliditylang.org/en/v0.8.15/
+<br/>
+Solidity Tutorial: Crypto Zombies (Español)
+https://cryptozombies.io/es/course
 <br/>
 Next.js: https://nextjs.org/docs
 <br/>
 Tailwind CSS: https://tailwindcss.com/docs/installation
 <br/>
-Flowbit Components: https://flowbite.com/
+Chkra-UI: https://chakra-ui.com/
+<br/>
+Chakra Templates: https://chakra-templates.dev/
 <br/>
 Hardhat: https://hardhat.org/getting-started/
 <br/>
@@ -164,15 +171,6 @@ Wagmi: https://wagmi.sh/docs/getting-started
 <br/>
 Markdown Cheatsheet: 
 https://www.markdownguide.org/cheat-sheet/
-<br/>
-Solidity Tutorial: Crypto Zombies (Español)
-https://cryptozombies.io/es/course
-<br/>
-Visual Studio Code:
-https://code.visualstudio.com/
-<br/>
-Dev Setup for Mac:
-https://www.youtube.com/watch?v=KwYqtbSwnH8
 <br/>
 The Git Book (Español):
 https://git-scm.com/book/es/v2
@@ -196,6 +194,13 @@ https://www.notion.so/ce46ba1864254908a4f24c3815125262?v=7d9b9a55be0748148b6b9d0
 </br>
 Notion Template for Hackathons (By Women in Web3):
 https://womeninweb3.notion.site/womeninweb3/Mini-Hack-Community-Template-65e5ee56505a49ec8c0a884ca4c63be0
+<br/>
+Visual Studio Code:
+https://code.visualstudio.com/
+<br/>
+Dev Setup for Mac:
+https://www.youtube.com/watch?v=KwYqtbSwnH8
+<br/>
 
 ---
 
