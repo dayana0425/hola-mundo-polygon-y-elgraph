@@ -1,5 +1,5 @@
 # Hola Mundo DApp 👋 
-### Desarrollo de Blockchain de Pila Completa en Español 🌈
+### Desarrollo de Blockchain de Pila Completa en Español ✨
 ---
 
 ![Figure 1](./images/HolaMundoScreenshot.png)
