@@ -11,9 +11,79 @@ import {
     AccordionButton,
     Button,
     useColorModeValue,
-  } from '@chakra-ui/react';
-  
+    useToast,
+} from '@chakra-ui/react';
+// React 
+import React, { useState, useEffect } from "react";
+// Wagmi 
+import { useContract, useSigner } from 'wagmi';
+// Address + ABI 
+import { contractAddress } from '../../utils/contractAddress.js';
+import contractABI from '../../contracts/ABI/HolaMundo.json';
+
+
   export default function Card({ greetingID, ownerAddress, country, name, age, message, crypto, imageURL, timestamp, totalRecieved, totalSent }) {
+    // Chakura-UI Toast Messages
+    const toast = useToast();
+    // Transaction States
+    const [success, setSuccess] = useState(null);
+    const [loading, setLoading] = useState(null);
+
+    // Connect To Contract
+    const signer = useSigner();
+    const contractOnMumbai = useContract({
+        addressOrName: contractAddress,
+        contractInterface: contractABI,
+        signerOrProvider: signer.data,
+    });
+
+    // Toasts for Transaction States
+    useEffect(() => {
+        if(success) {
+            toast({
+                title: "Success!",
+                status: "success",
+                duration: 4000,
+                isClosable: false,
+                position: "bottom-right",
+            });
+        }
+        if(loading) {
+            toast({
+                title: "Waiting...",
+                status: "loading",
+                duration: 4000,
+                isClosable: false,
+                position: "bottom-right",
+            });
+        }
+    }, [success, loading]);
+
+    // Send Greeting
+    const sendGreeting = async (cid) => {
+        try {
+            // Reset
+            setSuccess(false)
+            setLoading(false)
+            if (contractOnMumbai) {
+            // Calling smart contract function: sendGreeting
+            const txn = await contractOnMumbai.sendGreeting(greetingID,{ gasLimit: 900000 });
+            setLoading(true);
+            await txn.wait();
+            setLoading(false);
+            setSuccess(true);
+            } else {
+            setSuccess(false)
+            setLoading(false)
+            alert("Oops! Something went wrong. Please refresh & try again.");
+            }
+        } catch (error) {
+            setSuccess(false)
+            setLoading(false)
+            alert("Oops! Something went wrong. Please refresh & try again.");
+        }
+    };
+
     return (
       <Center py={6}>
         <Box
@@ -110,9 +180,13 @@ import {
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
-                _focus={{
-                    bg: 'purple.500',
-                }}>
+                colorScheme="blue"
+                bg="blue.400"
+                color="white"
+                _hover={{
+                  bg: 'blue.500',
+                }}
+                onClick={(e)=> sendGreeting(e)}>
                 Manda Saludos 👋
             </Button>
         </Box>

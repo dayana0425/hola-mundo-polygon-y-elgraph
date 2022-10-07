@@ -25,8 +25,6 @@ import {
   import Header from "./Header";
   // React 
   import React, { useState, useEffect } from "react";
-  // Wagmi 
-  import { useContract, useSigner } from 'wagmi';
   // Icon
   import { BsPerson } from 'react-icons/bs';
   // Data
@@ -34,6 +32,8 @@ import {
   import cryptocurrenciesJSON from '../data/cryptocurrencies.json';
   // Helper
   import getRandomImage from "../helpers/getRandomImage";
+  // Wagmi 
+  import { useContract, useSigner } from 'wagmi';
   // Address + ABI 
   import { contractAddress } from '../utils/contractAddress.js';
   import contractABI from '../contracts/ABI/HolaMundo.json';
@@ -72,27 +72,27 @@ import {
       signerOrProvider: signer.data,
     });
 
-    // Toasts for Transaction States
-    useEffect(() => {
-      if(success) {
-        toast({
-          title: "Success!",
-          status: "success",
-          duration: 4000,
-          isClosable: false,
-          position: "bottom-right",
-        });
-      }
-      if(loading) {
-        toast({
-          title: "Waiting...",
-          status: "loading",
-          duration: 4000,
-          isClosable: false,
-          position: "bottom-right",
-        });
-      }
-    }, [success, loading]);
+  // Toasts for Transaction States
+  useEffect(() => {
+    if(success) {
+      toast({
+        title: "Success!",
+        status: "success",
+        duration: 4000,
+        isClosable: false,
+        position: "bottom-right",
+      });
+    }
+    if(loading) {
+      toast({
+        title: "Waiting...",
+        status: "loading",
+        duration: 4000,
+        isClosable: false,
+        position: "bottom-right",
+      });
+    }
+  }, [success, loading]);
 
     // Handle Submit
     async function handleSubmit(e) {
@@ -143,9 +143,13 @@ import {
           setLoading(false);
           setSuccess(true);
         } else {
+          setSuccess(false)
+          setLoading(false)
           alert("Oops! Something went wrong. Please refresh & try again.");
         }
       } catch (error) {
+        setSuccess(false)
+        setLoading(false)
         alert("Oops! Something went wrong. Please refresh & try again.");
       }
     };
