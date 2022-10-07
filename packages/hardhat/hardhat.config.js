@@ -19,7 +19,7 @@ module.exports = {
     },
     mumbai: {
       url: process.env.MUMBAI_ALCHEMY_API_URL,
-      // accounts: process.env.PK !== undefined ? [process.env.PK] : [],
+      // accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       accounts: {
         mnemonic: process.env.ADMIN_WALLET_SEED,
       },
@@ -37,6 +37,6 @@ module.exports = {
     pretty: false,
   },
   etherscan: {
-    api: process.env.ETHERSCAN_KEY,
+    api: process.env.POLYGONSCAN_KEY,
   },
 };

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
     Heading,
     Avatar,
@@ -13,11 +14,7 @@ import {
     useColorModeValue,
     useToast,
 } from '@chakra-ui/react';
-// React 
-import React, { useState, useEffect } from "react";
-// Wagmi 
 import { useContract, useSigner } from 'wagmi';
-// Address + ABI 
 import { contractAddress } from '../../utils/contractAddress.js';
 import contractABI from '../../contracts/ABI/HolaMundo.json';
 

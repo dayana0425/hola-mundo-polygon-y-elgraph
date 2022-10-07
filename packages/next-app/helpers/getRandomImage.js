@@ -11,8 +11,6 @@ let images = [
 
 function getRandomImage() {
   let randomNum = Math.floor(Math.random() * images.length);
-  console.log("Random Number: ", randomNum);
-  console.log("Image Returned: ", images[randomNum]);
   return images[randomNum];
 }
 

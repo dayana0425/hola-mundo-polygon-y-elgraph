@@ -1,7 +1,6 @@
 import { Web3Storage, File, getFilesFromPath } from "web3.storage";
 const { resolve } = require("path");
 
-// handler func for incoming event requests
 export default async function handler(req, res) {
     if (req.method === "POST") {
       return await storeGreetingData(req, res);
@@ -22,11 +21,10 @@ async function storeGreetingData(req, res) {
     } catch (err) {
       return res
         .status(500)
-        .json({ error: "Error creating event", success: false });
+        .json({ error: "Error creating greeting", success: false });
     }
   }
 
-  // async func to makeFileObjects
   async function makeFileObjects(body) {
     const buffer = Buffer.from(JSON.stringify(body));
   
@@ -37,12 +35,11 @@ async function storeGreetingData(req, res) {
     return files;
   }
 
-// func to create web3storage client obj
+
 function makeStorageClient() {
     return new Web3Storage({ token: process.env.WEB3STORAGE_TOKEN });
 }
 
-// call put method to upload array of files
 async function storeFiles(files) {
     const client = makeStorageClient();
     const cid = await client.put(files);

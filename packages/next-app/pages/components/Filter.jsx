@@ -142,6 +142,7 @@ const CRYPTO_GREETINGS = gql`
         }
     })
 
+    // TODO: Sort By Most/Least Greetings Recieved
 
     return (
       <div>
@@ -157,7 +158,7 @@ const CRYPTO_GREETINGS = gql`
                 color={useColorModeValue('gray.700', 'whiteAlpha.900')}
                 shadow="base">
                 <Stack direction={ isLargerThanLG ? 'row' : 'column'} spacing={2}>[]
-                {/* FIELD: PAÍS*/}
+                {/* FIELD: PAÍS */}
                     <FormControl>
                     <FormLabel>País</FormLabel>
                     <Select
@@ -171,7 +172,7 @@ const CRYPTO_GREETINGS = gql`
                             })}
                     </Select>
                     </FormControl>
-                    {/* FIELD: CRIPTO*/}
+                    {/* FIELD: CRIPTO */}
                     <FormControl>
                     <FormLabel>Criptomoneda Favorita</FormLabel>
                     <Select

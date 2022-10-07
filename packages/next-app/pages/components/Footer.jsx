@@ -1,5 +1,5 @@
-import { Container, Divider, Link, Text } from "@chakra-ui/react";
 import React from "react";
+import { Container, Divider, Link, Text } from "@chakra-ui/react";
 
 function Footer() {
   return (

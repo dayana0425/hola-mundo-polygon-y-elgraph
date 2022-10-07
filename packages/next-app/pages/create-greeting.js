@@ -1,4 +1,4 @@
-// Chakra UI
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Button,
@@ -23,8 +23,6 @@ import {
 } from '@chakra-ui/react';
   import Navbar from "./components/Navbar";
   import Header from "./Header";
-  // React 
-  import React, { useState, useEffect } from "react";
   // Icon
   import { BsPerson } from 'react-icons/bs';
   // Data

@@ -18,8 +18,7 @@ function MyApp({ Component, pageProps }) {
         showRecentTransactions={true}
         coolMode
         appInfo={appInfo}
-        chains={chains}
-      >
+        chains={chains}>
         <ApolloProvider client={client}>
           <ChakraProvider>
             <Component {...pageProps} />
