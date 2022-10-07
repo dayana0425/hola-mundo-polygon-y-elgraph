@@ -195,7 +195,7 @@ https://www.youtube.com/watch?v=KwYqtbSwnH8
 Canva: Para Crear Presentaciones De Pitch Deck
 https://www.canva.com/
 </br>
-Miro: Para planificar tu DApp):
+Miro: Para planificar tu DApp:
 https://miro.com/
 </br>
 Figma: Wireframes:
