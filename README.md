@@ -23,7 +23,6 @@ Este proyecto incluye ejemplos y explicaciones de:
 
 #### Stack De Tech utilizado: 
  - Javascript
- - React
  - Next.js
  - Tailwind CSS 
  - Chakra UI
