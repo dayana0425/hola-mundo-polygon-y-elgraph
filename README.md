@@ -1,20 +1,19 @@
 # Hola Mundo DApp 👋 
 ### Desarrollo de Blockchain de Pila Completa en Español ✨
----
 
 ![Figure 1](./images/HolaMundoScreenshot.png)
 
----
+<p> Un proyecto inicial y tutorial para configurar rápidamente la creación de tu DApp en Polygon y con El Graph. Ideal para hackatones.
 
-<p>
-
-Un proyecto inicial para configurar rápidamente la creación de tu DApp en Polygon y con El Graph. 
-
-En este proyecto de ejemplo, es un juego de enviar y recibir saludos en Polygon. La persona que recibe la mayor cantidad de saludos gana! Este proyecto incluye El Graph para que usuarios puedan filtrar entre todos los usuarios para encontrar ciertas  personas a la que desea saludar usando GraphQL.
-
+Este proyecto incluye ejemplos y explicaciones de:
+* Crear, compilar y desplegar un contrato inteligente en la red de prueba de Polygon Mumbai usando Hardhat.
+* Usar Wagmi React Hooks en la interfaz para llamar a funciones desde nuestro contrato inteligente desplegado.
+* Usar Web3Storage para almacenar nuestras imágenes y otros detalles del usuario.
+* Crear, compilar y desplegar un Subgraph a la red de El Graph.
+* Consultar un Subgraph desde la interfaz para solicitar la información que queremos.
 </p>
 
----
+
 
 # 🤖 Stack De Tech e Información De Redes
 
