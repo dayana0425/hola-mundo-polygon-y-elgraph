@@ -13,7 +13,11 @@ Este proyecto incluye ejemplos y explicaciones de:
 * Consultar un Subgraph desde la interfaz para solicitar la información que queremos.
 </p>
 
+[Subgraph](https://thegraph.com/hosted-service/subgraph/dayana0425/holamundo)
 
+[Contrato Inteligente](https://mumbai.polygonscan.com/address/0xb528596e54d3fcd239cee4e09b55d986ea0a2c17)
+
+[Interfaz](https://hola-mundo-polygon-y-elgraph-next-app.vercel.app/)
 
 # 🤖 Stack De Tech e Información De Redes
 
