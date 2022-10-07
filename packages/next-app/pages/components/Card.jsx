@@ -4,7 +4,6 @@ import {
     Avatar,
     Box,
     Center,
-    Text,
     Accordion,
     AccordionItem,
     AccordionIcon,
@@ -14,12 +13,13 @@ import {
     useColorModeValue,
     useToast,
 } from '@chakra-ui/react';
+import CardText from "./CardText.jsx";
 import { useContract, useSigner } from 'wagmi';
 import { contractAddress } from '../../utils/contractAddress.js';
 import contractABI from '../../contracts/ABI/HolaMundo.json';
 
 
-  export default function Card({ greetingID, ownerAddress, country, name, age, message, crypto, imageURL, timestamp, totalRecieved, totalSent }) {
+export default function Card({ greetingID, ownerAddress, country, name, age, message, crypto, imageURL, timestamp, totalRecieved, totalSent }) {
     // Chakura-UI Toast Messages
     const toast = useToast();
     // Transaction States
@@ -82,11 +82,11 @@ import contractABI from '../../contracts/ABI/HolaMundo.json';
     };
 
     return (
-      <Center py={6}>
+      <Center py={6} px={3}>
         <Box
-          maxW={'320px'}
+          maxW={'300px'}
           w={'full'}
-          bg={useColorModeValue('white', 'gray.900')}
+          bg={useColorModeValue('purple.100', 'purple.900')}
           boxShadow={'2xl'}
           rounded={'lg'}
           p={6}
@@ -98,95 +98,41 @@ import contractABI from '../../contracts/ABI/HolaMundo.json';
                 mb={4}
                 pos={'relative'}
             />
-            <Heading fontSize={'2xl'} fontFamily={'body'}>
-                Hola Mundo! 🌎
-            </Heading>
-            {/* ACCORDIAN */}
+            <Heading fontSize={'2xl'} fontFamily={'body'}> Hola Mundo! 🌎 </Heading>
+            {/* ABOUT ME */}
             <Accordion allowToggle>
                 <AccordionItem>
-                    <h2>
-                    <AccordionButton _expanded={{ bg: 'blue.200', color: 'white'}}>
-                        <Box fontWeight={600} color={'gray.600'} flex='1' textAlign='center'>
+                    <AccordionButton _expanded={{ bg: 'purple.200', color: 'purple.500'}}>
+                        <Box fontWeight={700} color={'purple.500'} flex='1' textAlign='center'> 
                             Sobre Mí
                         </Box>
                         <AccordionIcon />
                     </AccordionButton>
-                    </h2>
                     <AccordionPanel pb={4}>
-                        {/* INFO */}
-                        <Text fontWeight={600} color={'gray.600'}>
-                            Greeting ID:
-                        </Text>
-                        <Text color={'gray.500'}>
-                            {greetingID}
-                        </Text>
-                        <Text fontWeight={600} color={'gray.600'}>
-                            Address:
-                        </Text>
-                        <Text color={'gray.500'}>
-                            {ownerAddress}
-                        </Text>
-                        <Text fontWeight={600} color={'gray.600'}>
-                            Mi Nombre Es:
-                        </Text>
-                        <Text color={'gray.500'}>
-                            {name}
-                        </Text>
-                        <Text fontWeight={600} color={'gray.600'}>
-                            Años:
-                        </Text>
-                        <Text color={'gray.500'}>
-                            {age}
-                        </Text>
-                        <Text fontWeight={600} color={'gray.600'}>
-                            País:
-                        </Text>
-                        <Text color={'gray.500'}>
-                            {country}
-                        </Text>
-                        <Text fontWeight={600} color={'gray.600'}>
-                            Criptomoneda Favorita:
-                        </Text>
-                        <Text color={'gray.500'}>
-                            {crypto}
-                        </Text>
-                        <Text fontWeight={600} color={'gray.600'}>
-                            Mensaje:
-                        </Text>
-                        <Text color={'gray.500'}>
-                            {message}
-                        </Text>
+                        <CardText boldText={"Greeting ID:"} text={greetingID}/>
+                        <CardText boldText={"Address:"} text={ownerAddress}/>
+                        <CardText boldText={"Mi Nombre Es:"} text={name}/>
+                        <CardText boldText={"País:"} text={country}/>
+                        <CardText boldText={"Criptomoneda Favorita:"} text={crypto}/>
+                        <CardText boldText={"Mensaje:"} text={message}/>
                     </AccordionPanel>
                 </AccordionItem>
             </Accordion>
-            {/* SENT / RECIEVED */}
-            <Text fontWeight={600} color={'gray.600'}>
-            Recibido:
-            </Text>
-            <Text color={'gray.500'}>
-                {totalRecieved}
-            </Text>
-            <Text fontWeight={600} color={'gray.600'}>
-                Enviado:
-            </Text>
-            <Text color={'gray.500'}>
-                {totalSent}
-            </Text>
+            {/* RECIEVED GREETINGS */}
+            <CardText boldText={"Recibido:"} text={totalRecieved}/>
             {/* SEND GREETING */}
             <Button
                 flex={1}
                 fontSize={'sm'}
                 rounded={'full'}
                 colorScheme="blue"
-                bg="blue.400"
+                bg="purple.400"
                 color="white"
-                _hover={{
-                  bg: 'blue.500',
-                }}
+                _hover={{ bg: 'blue.500' }}
                 onClick={(e)=> sendGreeting(e)}>
                 Manda Saludos 👋
             </Button>
         </Box>
       </Center>
     );
-  }
+}

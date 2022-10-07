@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { 
+import {
     SimpleGrid,
     Flex,
     Box,
@@ -7,7 +7,6 @@ import {
     FormLabel,
     Select,
     Stack,
-    Divider,
     useColorModeValue,
     useMediaQuery
 } from "@chakra-ui/react";
@@ -29,7 +28,6 @@ import cryptocurrenciesJSON from '../../data/cryptocurrencies.json';
             imageURL
             timestamp
             totalRecieved
-            totalSent
           }
         }
       `;
@@ -47,7 +45,6 @@ import cryptocurrenciesJSON from '../../data/cryptocurrencies.json';
             imageURL
             timestamp
             totalRecieved
-            totalSent
         }
     }
   `;
@@ -65,7 +62,6 @@ import cryptocurrenciesJSON from '../../data/cryptocurrencies.json';
             imageURL
             timestamp
             totalRecieved
-            totalSent
         }
     }
   `;
@@ -83,7 +79,6 @@ const COUNTRY_GREETINGS = gql`
             imageURL
             timestamp
             totalRecieved
-            totalSent
         }
     }
 `;
@@ -101,7 +96,23 @@ const CRYPTO_GREETINGS = gql`
             imageURL
             timestamp
             totalRecieved
-            totalSent
+        }
+    }
+`;
+
+const SORT_GREETINGS = gql`
+    query getGreetings {
+        greetings(orderBy: totalRecieved orderDirection: desc) {
+            greetingID
+            ownerAddress
+            country
+            name
+            age
+            message
+            crypto
+            imageURL
+            timestamp
+            totalRecieved
         }
     }
 `;
@@ -142,8 +153,8 @@ const CRYPTO_GREETINGS = gql`
         }
     })
 
-    // TODO: Sort By Most/Least Greetings Recieved
-
+    const sortQuery = useQuery(SORT_GREETINGS);
+    console.log(timeSelected)
     return (
       <div>
         {/* FILTERING OPTIONS */}
@@ -154,7 +165,7 @@ const CRYPTO_GREETINGS = gql`
                 borderWidth='1px'
                 bg={useColorModeValue('white', 'gray.700')}
                 borderRadius="lg"
-                p={4}
+                p={2}
                 color={useColorModeValue('gray.700', 'whiteAlpha.900')}
                 shadow="base">
                 <Stack direction={ isLargerThanLG ? 'row' : 'column'} spacing={2}>[]
@@ -186,16 +197,19 @@ const CRYPTO_GREETINGS = gql`
                             })}
                     </Select>
                     </FormControl>
-                    {/* FIELD: TIEMPO */}
+                    {/* FIELD: OTHER */}
                     <FormControl>
                     <FormLabel>Tiempo Creado</FormLabel>
                     <Select
-                        id={"Crypto"}
+                        id={"Other"}
                         onChange={(e) => setTime(e.target.value)}
-                        placeholder='Selecciona Un Tiempo'>
+                        placeholder='Seleccione Una Opción'>
                             <option>
                                 Ultimas 24 Horas
-                            </option>);
+                            </option>
+                            <option>
+                                Ordenar Por Saludos Recibidos
+                            </option>
                     </Select>
                     </FormControl>
                 </Stack>
@@ -283,9 +297,27 @@ const CRYPTO_GREETINGS = gql`
                     totalSent={greeting.totalSent}> 
                 </Card>))
             }
-            { timeSelected != ""
+            { timeSelected == "Ultimas 24 Horas"
             && yesterdayQuery.data 
             && yesterdayQuery.data.greetings.map((greeting) => ( 
+                <Card
+                    key={greeting.greetingID}
+                    greetingID={greeting.greetingID}
+                    ownerAddress={greeting.ownerAddress}
+                    country={greeting.country}
+                    name={greeting.name}
+                    age={greeting.age}
+                    message={greeting.message}
+                    crypto={greeting.crypto}
+                    imageURL={greeting.imageURL}
+                    timestamp={greeting.timestamp}
+                    totalRecieved={greeting.totalRecieved}
+                    totalSent={greeting.totalSent}> 
+                </Card>))
+            }
+            { timeSelected == "Ordenar Por Saludos Recibidos"
+            && sortQuery.data 
+            && sortQuery.data.greetings.map((greeting) => ( 
                 <Card
                     key={greeting.greetingID}
                     greetingID={greeting.greetingID}

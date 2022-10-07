@@ -9,14 +9,6 @@ type Greeting @entity {
   message: String
   imageURL: String
   timestamp: BigInt!
-  recieved: [Recieved!] @derivedFrom(field: "greeting")
   totalRecieved: BigInt!
-  totalSent: BigInt!
-}
-
-type Recieved @entity {
-  id: ID!
-  from: Bytes!
-  greeting: Greeting!
 }
 

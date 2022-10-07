@@ -171,23 +171,6 @@ export class Greeting extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get recieved(): Array<string> | null {
-    let value = this.get("recieved");
-    if (!value || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set recieved(value: Array<string> | null) {
-    if (!value) {
-      this.unset("recieved");
-    } else {
-      this.set("recieved", Value.fromStringArray(<Array<string>>value));
-    }
-  }
-
   get totalRecieved(): BigInt {
     let value = this.get("totalRecieved");
     return value!.toBigInt();
@@ -195,64 +178,5 @@ export class Greeting extends Entity {
 
   set totalRecieved(value: BigInt) {
     this.set("totalRecieved", Value.fromBigInt(value));
-  }
-
-  get totalSent(): BigInt {
-    let value = this.get("totalSent");
-    return value!.toBigInt();
-  }
-
-  set totalSent(value: BigInt) {
-    this.set("totalSent", Value.fromBigInt(value));
-  }
-}
-
-export class Recieved extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save Recieved entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.STRING,
-        `Entities of type Recieved must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Recieved", id.toString(), this);
-    }
-  }
-
-  static load(id: string): Recieved | null {
-    return changetype<Recieved | null>(store.get("Recieved", id));
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value!.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get from(): Bytes {
-    let value = this.get("from");
-    return value!.toBytes();
-  }
-
-  set from(value: Bytes) {
-    this.set("from", Value.fromBytes(value));
-  }
-
-  get greeting(): string {
-    let value = this.get("greeting");
-    return value!.toString();
-  }
-
-  set greeting(value: string) {
-    this.set("greeting", Value.fromString(value));
   }
 }

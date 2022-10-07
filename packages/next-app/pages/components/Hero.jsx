@@ -7,8 +7,6 @@ import {
   Button,
   Stack,
   Img,
-  Spacer,
-  SimpleGrid,
   useMediaQuery
 } from "@chakra-ui/react";
 
@@ -19,17 +17,16 @@ function Hero() {
       <Flex
         alignItems="center"
         w="full"
-        px={isLargerThanLG ? '19' : '6'}
+        px={isLargerThanLG ? '19' : '8'}
         py="10"
         minHeight="20vh"
-        justifyContent="space-between"
         flexDirection={isLargerThanLG ? 'row' : 'column'}>
         <Box mr={isLargerThanLG ? '6' : '0'} w={isLargerThanLG ? '60%' : 'full'}>
           {/* TITLE */}
           <Flex justifyContent={"left"} alignItems={"center"}>
             <Heading
               className={"text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"}
-              fontSize={["3rem", "2.8rem", "2.5rem", "3.3rem", "3.8rem"]}>
+              fontSize={["4rem", "3.8rem", "3.5rem", "3.3rem", "3rem"]}>
               Hola Mundo
             </Heading>
           </Flex>
@@ -54,12 +51,11 @@ function Hero() {
             </Button>
           </Stack>
         </Box>
-        <Spacer />
         {/* IMAGE */}
         <Flex
-          w={isLargerThanLG ? '40%' : 'full'}
-          alignItems="center"
-          justifyContent="center">
+          w={isLargerThanLG ? '40%' : '60%'}
+          alignItems="left"
+          justifyContent="left">
           <Img src="/HolaMundo.png" alt="Hola Mundo Image" />
         </Flex>
       </Flex>
