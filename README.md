@@ -110,13 +110,13 @@ Los servicios asignan una clave única para cada aplicación. La clave es una ca
 ```bash
 # navegue a la carpeta 'hardhat'
 cd packages/hardhat 
-# copie el contenido dentro de .env.example a .env.local
-cp .env.example .env.local
+# copie el contenido dentro de .env.example a .env
+cp .env.example .env
 
 # navegue a la carpeta 'next-app'
 cd packages/next-app
-# copie el contenido dentro de .env.example a .env.local
-cp .env.example .env.local
+# copie el contenido dentro de .env.example a .env
+cp .env.example .env
 ```
 * Agregue las claves que guardó en el archivo `.env.local`
 
