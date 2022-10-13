@@ -163,7 +163,6 @@ import cryptocurrenciesJSON from '../../data/cryptocurrencies.json'; // lista de
     // query para ordena los saludos
     const sortQuery = useQuery(SORT_GREETINGS);
 
-    console.log(allGreetingsQuery)
     return (
       <div>
         {/* OPCIONES DE FILTRO */}

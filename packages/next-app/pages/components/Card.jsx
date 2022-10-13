@@ -54,12 +54,12 @@ export default function Card({ greetingID, ownerAddress, country, name, age, mes
         }
     }, [success, loading]);
 
-    const enviarSaludo = async (cid) => {
+    const enviarSaludo = async (e) => {)
         try {
             setSuccess(false)
             setLoading(false)
             if (contractOnMumbai) {
-            const txn = await contractOnMumbai.enviarSaludo(greetingID,{ gasLimit: 900000 });
+            const txn = await contractOnMumbai.enviarSaludo(greetingID,{ gasLimit: 900500 });
             setLoading(true);
             await txn.wait();
             setLoading(false);
