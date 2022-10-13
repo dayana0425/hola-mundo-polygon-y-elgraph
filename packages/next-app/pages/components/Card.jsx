@@ -54,7 +54,7 @@ export default function Card({ greetingID, ownerAddress, country, name, age, mes
         }
     }, [success, loading]);
 
-    const enviarSaludo = async (e) => {)
+    const enviarSaludo = async (e) => {
         try {
             setSuccess(false)
             setLoading(false)
