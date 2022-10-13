@@ -82,7 +82,7 @@ yarn install
 #### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy, de Web3Storage y de PolygonScan
 * [Metamask](https://metamask.io/) 
    * IMPORTANTE: se recomienda crear una wallet solamente para desarrollo, ¡evita usar tu wallet normal!
-   * Guarda la llave privada de esta wallet de desarrollo en tus notas. 
+   * Guarda la frase semilla (mnemotécnica) de esta wallet de desarrollo en tus notas. 
 * [Alchemy](https://www.alchemy.com/)
   * Genera una clave api GRATIS para mumbai.
   * Guarda tu clave en tus notas.
@@ -150,68 +150,68 @@ yarn dev
 
 ---
 
-# 📚 Recursos
-30 Dia De Web3: 
+# 📚 Recursos Para Desarrollo
+30 Dias De Web3: 
 https://www.30daysofweb3.xyz/es/curriculum/1-introducci%C3%B3n/0-bienvenidos
 <br/>
-Solidity Docs: 
+Documentación de Solidity: 
 https://docs.soliditylang.org/en/v0.8.15/
 <br/>
-Solidity Tutorial: 
-Crypto Zombies (Español)
+Tutorial de Solidity: Crypto Zombies
 https://cryptozombies.io/es/course
 <br/>
-Next.js Docs: 
+Documentación de Next.js: 
 https://nextjs.org/docs
 <br/>
-Tailwind CSS Docs: https://tailwindcss.com/docs/installation
+Documentación de Tailwind CSS: https://tailwindcss.com/docs/installation
 <br/>
-Chkra-UI: https://chakra-ui.com/
+Documentación de Chakra-UI: https://chakra-ui.com/
 <br/>
 Chakra Templates: https://chakra-templates.dev/
 <br/>
-Hardhat: https://hardhat.org/getting-started/
+Documentación de Hardhat: https://hardhat.org/getting-started/
 <br/>
-Ethers.js: https://docs.ethers.io/v5/
+Documentación de Ethers.js: https://docs.ethers.io/v5/
 <br/>
-Rainbow Kit: https://www.rainbowkit.com/docs/introduction 
+Documentación de Rainbow Kit: https://www.rainbowkit.com/docs/introduction 
 <br/>
-Wagmi: https://wagmi.sh/docs/getting-started
+Documentación de Wagmi: https://wagmi.sh/docs/getting-started
 <br/>
 Markdown Cheatsheet: 
 https://www.markdownguide.org/cheat-sheet/
 <br/>
-The Git Book (Español):
+El Libro de Git (Español):
 https://git-scm.com/book/es/v2
 <br/>
 Atlassian Git Guru:
 https://www.atlassian.com/git/tutorials
-<br/> Git Commands Cheatsheet:
+<br/> Git Comandos Cheatsheet:
 https://www.hostinger.com/tutorials/basic-git-commands
 </br>
-Canva (Use for Pitch Deck):
-https://www.canva.com/
-</br>
-Miro (DApp Planning Whiteboard):
-https://miro.com/
-</br>
-Figma (DApp Wireframes):
-https://www.figma.com/
-</br>
-Notion for File Sharing/Collaborating:
-https://www.notion.so/
-</br>
-Notion Template for Hackathons (By Women in Web3):
-https://womeninweb3.notion.site/womeninweb3/Mini-Hack-Community-Template-65e5ee56505a49ec8c0a884ca4c63be0
-<br/>
-Web3athon Notion:
-https://project-cradl.notion.site/Welcome-to-Web3athon-e0b17fe0a41b441fb33e6154adb5795e
-<br/>
 Visual Studio Code:
 https://code.visualstudio.com/
 <br/>
 Dev Setup for Mac:
 https://www.youtube.com/watch?v=KwYqtbSwnH8
+<br/>
+# 📚 Herramientas Para Hackatones
+Canva: Para Crear Presentaciones De Pitch Deck
+https://www.canva.com/
+</br>
+Miro: Para planificar tu DApp:
+https://miro.com/
+</br>
+Figma: Wireframes:
+https://www.figma.com/
+</br>
+Notion: Para compartir archivos y colaborar con tu equipo:
+https://www.notion.so/
+</br>
+Plantilla de Notion para hackatones (De: Women in Web3):
+https://womeninweb3.notion.site/womeninweb3/Mini-Hack-Community-Template-65e5ee56505a49ec8c0a884ca4c63be0
+<br/>
+Web3athon Notion:
+https://project-cradl.notion.site/Welcome-to-Web3athon-e0b17fe0a41b441fb33e6154adb5795e
 <br/>
 
 ---
