@@ -5,31 +5,31 @@ import {
   clearStore,
   beforeAll,
   afterAll
-} from "matchstick-as/assembly/index"
+} from "matchstick-as"
 import { Bytes, Address, BigInt } from "@graphprotocol/graph-ts"
 import { ExampleEntity } from "../generated/schema"
-import { NewGreetingCreated } from "../generated/Contract/Contract"
-import { handleNewGreetingCreated } from "../src/contract"
-import { createNewGreetingCreatedEvent } from "./contract-utils"
+import { NuevoSaludoCreado } from "../generated/Contract/Contract"
+import { handleNuevoSaludoCreado } from "../src/contract"
+import { createNuevoSaludoCreadoEvent } from "./contract-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
 
 describe("Describe entity assertions", () => {
   beforeAll(() => {
-    let greetingId = Bytes.fromI32(1234567890)
-    let greetingDataCID = "Example string value"
-    let greetingOwner = Address.fromString(
+    let saludoId = Bytes.fromI32(1234567890)
+    let saludoDatosCID = "Example string value"
+    let saludador = Address.fromString(
       "0x0000000000000000000000000000000000000001"
     )
-    let timestamp = BigInt.fromI32(234)
-    let newNewGreetingCreatedEvent = createNewGreetingCreatedEvent(
-      greetingId,
-      greetingDataCID,
-      greetingOwner,
-      timestamp
+    let marcaDeTiempo = BigInt.fromI32(234)
+    let newNuevoSaludoCreadoEvent = createNuevoSaludoCreadoEvent(
+      saludoId,
+      saludoDatosCID,
+      saludador,
+      marcaDeTiempo
     )
-    handleNewGreetingCreated(newNewGreetingCreatedEvent)
+    handleNuevoSaludoCreado(newNuevoSaludoCreadoEvent)
   })
 
   afterAll(() => {
@@ -46,25 +46,25 @@ describe("Describe entity assertions", () => {
     assert.fieldEquals(
       "ExampleEntity",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
-      "greetingId",
+      "saludoId",
       "1234567890"
     )
     assert.fieldEquals(
       "ExampleEntity",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
-      "greetingDataCID",
+      "saludoDatosCID",
       "Example string value"
     )
     assert.fieldEquals(
       "ExampleEntity",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
-      "greetingOwner",
+      "saludador",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
       "ExampleEntity",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
-      "timestamp",
+      "marcaDeTiempo",
       "234"
     )
 

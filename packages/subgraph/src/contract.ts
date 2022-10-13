@@ -1,64 +1,64 @@
 import { ipfs, json } from "@graphprotocol/graph-ts";
 import {
-  NewGreetingCreated,
-  RecievedGreeting
-} from "../generated/Contract/Contract";
-import { Greeting } from "../generated/schema";
+  Contract,
+  NuevoSaludoCreado,
+  SaludoRecibido
+} from "../generated/Contract/Contract"
+import { Saludo } from "../generated/schema";
 import { integer } from "@protofire/subgraph-toolkit";
 
-export function handleNewGreetingCreated(event: NewGreetingCreated): void {
-  let newGreeting = Greeting.load(event.params.greetingId.toHex());
-  if (newGreeting == null) {
-    newGreeting = new Greeting(event.params.greetingId.toHex());
-    newGreeting.greetingID = event.params.greetingId;
-    newGreeting.ownerAddress = event.params.greetingOwner;
-    newGreeting.timestamp = event.params.timestamp;
-    newGreeting.totalRecieved = integer.ZERO;
+export function handleNuevoSaludoCreado(event: NuevoSaludoCreado): void {
+  let nuevoSaludo = Saludo.load(event.params.saludoId.toHex());
+  if (nuevoSaludo == null) {
+    nuevoSaludo = new Saludo(event.params.saludoId.toHex());
+    nuevoSaludo.saludoId = event.params.saludoId;
+    nuevoSaludo.saludador = event.params.saludador;
+    nuevoSaludo.marcaDeTiempo = event.params.marcaDeTiempo;
+    nuevoSaludo.saludosRecibidos = integer.ZERO;
 
-    // fetch data from ipfs
-    let ipfsData = ipfs.cat(event.params.greetingDataCID + "/data.json");
+    let ipfsData = ipfs.cat(event.params.saludoDatosCID + "/data.json");
+    
     if(ipfsData) {
       const value = json.fromBytes(ipfsData).toObject();
       if(value) {
         const name = value.get("name");
         if (name) {
-          newGreeting.name = name.toString();
+          nuevoSaludo.name = name.toString();
         }
         const age = value.get("age");
         if (age) {
-          newGreeting.age = age.toString();
+          nuevoSaludo.age = age.toString();
         }
         const country = value.get("country");
         if (country) {
-          newGreeting.country = country.toString();
+          nuevoSaludo.country = country.toString();
         }
         const crypto = value.get("crypto");
         if (crypto) {
-          newGreeting.crypto = crypto.toString();
+          nuevoSaludo.crypto = crypto.toString();
         }
         const message = value.get("formMessage");
         if (message) {
-          newGreeting.message = message.toString();
+          nuevoSaludo.message = message.toString();
         }
         const imagePath = value.get("image");
         if (imagePath) {
-          const imageURL = "https://ipfs.io/ipfs/" + event.params.greetingDataCID + imagePath.toString();
-          newGreeting.imageURL = imageURL;
+          const imageURL = "https://ipfs.io/ipfs/" + event.params.saludoDatosCID + imagePath.toString();
+          nuevoSaludo.imageURL = imageURL;
         } else {
           const fallbackURL = "https://bafybeidd2gyhagleh47qeg77xqndy2qy3yzn4vkxmk775bg2t5lpuy7pcu.ipfs.w3s.link/dr-is-tired.jpg";
-          newGreeting.imageURL = fallbackURL;
+          nuevoSaludo.imageURL = fallbackURL;
         }
       }
     }
-    newGreeting.save();
+    nuevoSaludo.save();
   } 
 }
 
-export function handleRecievedGreeting(event: RecievedGreeting): void {
-  let thisGreeting = Greeting.load(event.params.greetingId.toHex());
-  if (thisGreeting != null) {
-    thisGreeting.totalRecieved = integer.increment(thisGreeting.totalRecieved);
-    thisGreeting.save();
+export function handleSaludoRecibido(event: SaludoRecibido): void {
+  let esteSaludo = Saludo.load(event.params.saludoId.toHex());
+  if (esteSaludo != null) {
+    esteSaludo.saludosRecibidos = integer.increment(esteSaludo.saludosRecibidos);
+    esteSaludo.save();
   }
 }
-

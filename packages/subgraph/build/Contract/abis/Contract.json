@@ -5,29 +5,29 @@
       {
         "indexed": false,
         "internalType": "bytes32",
-        "name": "greetingId",
+        "name": "saludoId",
         "type": "bytes32"
       },
       {
         "indexed": false,
         "internalType": "string",
-        "name": "greetingDataCID",
+        "name": "saludoDatosCID",
         "type": "string"
       },
       {
         "indexed": false,
         "internalType": "address",
-        "name": "greetingOwner",
+        "name": "saludador",
         "type": "address"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "timestamp",
+        "name": "marcaDeTiempo",
         "type": "uint256"
       }
     ],
-    "name": "NewGreetingCreated",
+    "name": "NuevoSaludoCreado",
     "type": "event"
   },
   {
@@ -36,28 +36,41 @@
       {
         "indexed": false,
         "internalType": "bytes32",
-        "name": "greetingId",
+        "name": "saludoId",
         "type": "bytes32"
       },
       {
         "indexed": false,
         "internalType": "address",
-        "name": "from",
+        "name": "de",
         "type": "address"
       }
     ],
-    "name": "RecievedGreeting",
+    "name": "SaludoRecibido",
     "type": "event"
   },
   {
     "inputs": [
       {
         "internalType": "string",
-        "name": "greetingDataCID",
+        "name": "saludoDatosCID",
         "type": "string"
       }
     ],
-    "name": "createNewGreeting",
+    "name": "crearNuevoSaludo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "saludoId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "enviarSaludo",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -70,48 +83,35 @@
         "type": "bytes32"
       }
     ],
-    "name": "idToGreeting",
+    "name": "todosSaludos",
     "outputs": [
       {
         "internalType": "bytes32",
-        "name": "greetingId",
+        "name": "saludoId",
         "type": "bytes32"
       },
       {
         "internalType": "string",
-        "name": "greetingDataCID",
+        "name": "saludoDatosCID",
         "type": "string"
       },
       {
         "internalType": "address",
-        "name": "greetingOwner",
+        "name": "saludador",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "timestamp",
+        "name": "marcaDeTiempo",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "recieved",
+        "name": "saludosRecibidos",
         "type": "uint256"
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "greetingId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "sendGreeting",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

@@ -22,7 +22,7 @@ function Hero() {
         minHeight="20vh"
         flexDirection={isLargerThanLG ? 'row' : 'column'}>
         <Box mr={isLargerThanLG ? '6' : '0'} w={isLargerThanLG ? '60%' : 'full'}>
-          {/* TITLE */}
+          {/* TÍTULO */}
           <Flex justifyContent={"left"} alignItems={"center"}>
             <Heading
               className={"text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"}
@@ -30,12 +30,12 @@ function Hero() {
               Hola Mundo
             </Heading>
           </Flex>
-          {/* DESCRIPTION */}
+          {/* DESCRIPCIÓN */}
           <Text mb="5" fontSize={isLargerThanLG ? 'lg' : 'base'} opacity={0.7}>
             Una aplicación para enviar y recibir saludos!
           </Text>
           <Stack direction='row' spacing={4}>
-          {/* GREET THE WORLD */}
+          {/* SALUDA AL MUNDO */}
             <Button
               w="200px"
               colorScheme="blue"
@@ -51,7 +51,7 @@ function Hero() {
             </Button>
           </Stack>
         </Box>
-        {/* IMAGE */}
+        {/* IMAGEN */}
         <Flex
           w={isLargerThanLG ? '40%' : '60%'}
           alignItems="left"

@@ -11,7 +11,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class Greeting extends Entity {
+export class Saludo extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -19,18 +19,18 @@ export class Greeting extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Greeting entity without an ID");
+    assert(id != null, "Cannot save Saludo entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type Greeting must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type Saludo must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("Greeting", id.toString(), this);
+      store.set("Saludo", id.toString(), this);
     }
   }
 
-  static load(id: string): Greeting | null {
-    return changetype<Greeting | null>(store.get("Greeting", id));
+  static load(id: string): Saludo | null {
+    return changetype<Saludo | null>(store.get("Saludo", id));
   }
 
   get id(): string {
@@ -42,22 +42,40 @@ export class Greeting extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get greetingID(): Bytes {
-    let value = this.get("greetingID");
+  get saludoId(): Bytes {
+    let value = this.get("saludoId");
     return value!.toBytes();
   }
 
-  set greetingID(value: Bytes) {
-    this.set("greetingID", Value.fromBytes(value));
+  set saludoId(value: Bytes) {
+    this.set("saludoId", Value.fromBytes(value));
   }
 
-  get ownerAddress(): Bytes {
-    let value = this.get("ownerAddress");
+  get saludador(): Bytes {
+    let value = this.get("saludador");
     return value!.toBytes();
   }
 
-  set ownerAddress(value: Bytes) {
-    this.set("ownerAddress", Value.fromBytes(value));
+  set saludador(value: Bytes) {
+    this.set("saludador", Value.fromBytes(value));
+  }
+
+  get marcaDeTiempo(): BigInt {
+    let value = this.get("marcaDeTiempo");
+    return value!.toBigInt();
+  }
+
+  set marcaDeTiempo(value: BigInt) {
+    this.set("marcaDeTiempo", Value.fromBigInt(value));
+  }
+
+  get saludosRecibidos(): BigInt {
+    let value = this.get("saludosRecibidos");
+    return value!.toBigInt();
+  }
+
+  set saludosRecibidos(value: BigInt) {
+    this.set("saludosRecibidos", Value.fromBigInt(value));
   }
 
   get name(): string | null {
@@ -160,23 +178,5 @@ export class Greeting extends Entity {
     } else {
       this.set("imageURL", Value.fromString(<string>value));
     }
-  }
-
-  get timestamp(): BigInt {
-    let value = this.get("timestamp");
-    return value!.toBigInt();
-  }
-
-  set timestamp(value: BigInt) {
-    this.set("timestamp", Value.fromBigInt(value));
-  }
-
-  get totalRecieved(): BigInt {
-    let value = this.get("totalRecieved");
-    return value!.toBigInt();
-  }
-
-  set totalRecieved(value: BigInt) {
-    this.set("totalRecieved", Value.fromBigInt(value));
   }
 }

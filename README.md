@@ -1,25 +1,29 @@
 # Hola Mundo DApp 👋 
 ### Desarrollo de Blockchain de Pila Completa en Español ✨
 
+### English Version: [Hello World DApp](https://github.com/dayana0425/hola-mundo-polygon-y-elgraph)
+
 ![Figure 1](./images/HolaMundoScreenshot.png)
 
-<p> Un proyecto inicial y tutorial para configurar rápidamente la creación de tu DApp en Polygon y con El Graph. Ideal para hackatones.
+<p> Un proyecto de cajón y una guía para comenzar a construir rápidamente con Polygon y The Graph. Ideal para hackatones.
 
-Este proyecto incluye ejemplos y explicaciones de:
+Aprende a hacer lo siguiente:
 * Crear, compilar y desplegar un contrato inteligente en la red de prueba de Polygon Mumbai usando Hardhat.
-* Usar Wagmi React Hooks en la interfaz para llamar a funciones desde nuestro contrato inteligente desplegado.
-* Usar Web3Storage para almacenar nuestras imágenes y otros detalles del usuario.
-* Crear, compilar y desplegar un Subgraph a la red de El Graph.
-* Consultar un Subgraph desde la interfaz para solicitar la información que queremos.
+* Verificar su contrato inteligente usando la API de Polygonscan.
+* Interactuar con su contrato inteligente implementado desde su front-end usando Wagmi React Hooks.
+* Utilizar Web3Storage para almacenar imágenes y datos de usuario.
+* Crear, compilar e implementar un Subgraph en el servicio alojado de The Graph. (The Graph's Hosted Service)
+* Consultar/Query su Subgraph desde su front-end usando GraphQL para mostrar datos de blockchain e ipfs.
+* Aprenda a buscar, filtrar y ordenar sus datos usando The Graph.
 </p>
 
-[Subgraph](https://thegraph.com/hosted-service/subgraph/dayana0425/holamundo)
+[Subgraph](https://thegraph.com/hosted-service/subgraph/dayana0425/holamundosubgraph)
 
-[Contrato Inteligente](https://mumbai.polygonscan.com/address/0xb528596e54d3fcd239cee4e09b55d986ea0a2c17)
+[Contrato Inteligente](https://mumbai.polygonscan.com/address/0xa94F1Cc522A736C048A09B915633bE594D8DF914)
 
 [Interfaz](https://hola-mundo-polygon-y-elgraph-next-app.vercel.app/)
 
-# 🤖 Stack De Tech e Información De Redes
+# 🤖 Stack De Tech e Información De Cadena
 
 #### Stack De Tech utilizado: 
  - Javascript
@@ -39,9 +43,7 @@ Este proyecto incluye ejemplos y explicaciones de:
  - Monorepo
   
  ---
-
-# 🏄‍♂️ Inicio Rápido
-
+# 🏄‍♂️ Inicio Rápido Para Ejecutar Localmente
 #### Antes de clonar este proyecto, asegúrate de tener instalado lo siguiente en tu máquina (en este orden)!
 * [Node.js](https://nodejs.org/en/) 
 * [Yarn](https://classic.yarnpkg.com/en/docs/install/)
@@ -55,27 +57,29 @@ npm -v
 yarn -v
 git --version
 ```
+
+> Si alguno no devuelve la información de la versión, debe instalarlos para asegurarse de que su máquina cumpla con los requisitos previos.
 #### Fork y clonar este proyecto
 * Primero, `Fork` este proyecto haciendo clic en el botón de `Fork` en la esquina superior derecha de la página del repositorio.
 ![Figure 2](./images/fork.png)
 * Segundo, abre tu terminal y ejecuta el siguiente comando con tu usuario de github.
   
 ```bash
-git clone https://github.com/<TU-USUARIO>/hola-mundo-dapp
+git clone https://github.com/<TU-USUARIO>/hola-mundo-polygon-y-elgraph
 ```
 #### Instala todas las dependencias del proyecto
 
 * En el directorio raíz instala las dependencias del proyecto ejecutando `yarn install`
 
 ```bash
-cd hola-mundo-dapp
+cd hola-mundo-polygon-y-elgraph
 yarn install
 ```
 ---
 
 # 🛠 Configuración de Entorno y Wallet
 
-#### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy, de Web3Storage y una de PolygonScan
+#### Crea una wallet de desarollo con Metamask, una cuenta de Alchemy, de Web3Storage y de PolygonScan
 * [Metamask](https://metamask.io/) 
    * IMPORTANTE: se recomienda crear una wallet solamente para desarrollo, ¡evita usar tu wallet normal!
    * Guarda la llave privada de esta wallet de desarrollo en tus notas. 
@@ -89,39 +93,38 @@ yarn install
   * Genera una clave api GRATIS.
   * Guarda tu clave en tus notas.
   
-> **¿Porque se necessita claves de api?**
-> Las claves API brindan autorización para nuestro proyecto para que podamos realizar solicitudes al servicio que queremos usar. 
-Los servicios asignan una clave única para cada aplicación. La clave es una cadena de letras y números.
+> **¿Porque se necessita claves de API?**
+> Una clave API es una combinación única de letras y números que autoriza a nuestro proyecto a realizar solicitudes al servicio que queremos usar, como Alchemy, Polygonscan y Web3Storage. Es una llave para desbloquear el acceso. ✨
 
 #### Agrega las redes Testnet para Polygon Mumbai en Metamask:
 * Cómo agregar Polygon Mumbai Testnet en Metamask: https://docs.polygon.technology/docs/develop/metamask/config-polygon-on-metamask/
 
 > **¿Que es una <i>red de prueba</i>?**
-> Polygon Mainnet cuesta dinero real, pero existen redes de prueba como Mumbai que los desarrolladores utilizan para probar sus contratos inteligentes y cuesta dinero falso. Todas las blockchains tienen sus propias redes de prueba.
+> Usar Polygon Mainnet cuesta dinero real, pero existen Redes de Prueba o 'Testnets' como Polygon Mumbai que los desarrolladores usan para probar sus contratos inteligentes y cuesta dinero falso (dinero de prueba). Todas los Blockchains tienen sus propias redes de prueba.
 
 #### Fondea tu Cuenta con MATIC de prueba:
 * [Polygon Faucet (Mumbai Network)](https://faucet.polygon.technology/)
 
-> **¿Que es un <i>faucet?</i>?**
-> Un faucet es un lugar donde puedes solicitar dinero de prueba para probar tu DApp. Hay límites sobre cuánto y con qué frecuencia puedes hacer una solicitud.
+> **¿Que es un <i>Faucet?</i>?**
+> Un 'Faucet' es un lugar donde puedes solicitar dinero de prueba para probar tu contrato inteligente. Hay límites sobre cuánto puedes recibir diariamente.
 
 #### Configurar Variables de Entorno:
 
 ```bash
 # navegue a la carpeta 'hardhat'
 cd packages/hardhat 
-# copie el contenido dentro de .env.example a .env.local
-cp .env.example .env.local
+# copie el contenido dentro de .env.example a .env
+cp .env.example .env
 
 # navegue a la carpeta 'next-app'
 cd packages/next-app
-# copie el contenido dentro de .env.example a .env.local
-cp .env.example .env.local
+# copie el contenido dentro de .env.example a .env
+cp .env.example .env
 ```
-* Agregue las claves que guardó en el archivo `.env.local`
+* Complete los variables dentro de `.env` usando sus claves, URLs y frase inicial que guardó durante los pasos anteriores.
 
 > **¿Por qué necesitamos establecer variables de entorno?**
-> En nuestro archivo .env.local es donde almacenaremos las claves API que utilizará nuestra DApp. Es una buena práctica no exponerlos en nuestro código y almacenarlos en un archivo que estará oculto.
+> En nuestro archivo `.env` es donde almacenaremos las claves API, las direcciones URL y la frase inicial que usará nuestra DApp. Es una buena práctica no exponer estos valores en nuestro código y almacenarlos en un archivo que estará oculto. De esa manera, cuando ingresemos a GitHub, nuestras cuentas con dinero falso no se agotarán. (Los hackers drenan cuentas en Testnet tambien. 🙃)
 
 ---
 
@@ -142,7 +145,7 @@ yarn dev
 ---
 
 # ❓ Necesitas ayuda?
-* Mándame un mensaje por twitter o telegram: @hello-dayana
+* Mándame un mensaje por twitter o telegram: @hello_dayana
 * Abre un Github Issue
 
 ---

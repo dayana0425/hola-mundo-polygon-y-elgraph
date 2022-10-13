@@ -1,65 +1,56 @@
 import { newMockEvent } from "matchstick-as"
 import { ethereum, Bytes, Address, BigInt } from "@graphprotocol/graph-ts"
 import {
-  NewGreetingCreated,
-  RecievedGreeting
+  NuevoSaludoCreado,
+  SaludoRecibido
 } from "../generated/Contract/Contract"
 
-export function createNewGreetingCreatedEvent(
-  greetingId: Bytes,
-  greetingDataCID: string,
-  greetingOwner: Address,
-  timestamp: BigInt
-): NewGreetingCreated {
-  let newGreetingCreatedEvent = changetype<NewGreetingCreated>(newMockEvent())
+export function createNuevoSaludoCreadoEvent(
+  saludoId: Bytes,
+  saludoDatosCID: string,
+  saludador: Address,
+  marcaDeTiempo: BigInt
+): NuevoSaludoCreado {
+  let nuevoSaludoCreadoEvent = changetype<NuevoSaludoCreado>(newMockEvent())
 
-  newGreetingCreatedEvent.parameters = new Array()
+  nuevoSaludoCreadoEvent.parameters = new Array()
 
-  newGreetingCreatedEvent.parameters.push(
+  nuevoSaludoCreadoEvent.parameters.push(
+    new ethereum.EventParam("saludoId", ethereum.Value.fromFixedBytes(saludoId))
+  )
+  nuevoSaludoCreadoEvent.parameters.push(
     new ethereum.EventParam(
-      "greetingId",
-      ethereum.Value.fromFixedBytes(greetingId)
+      "saludoDatosCID",
+      ethereum.Value.fromString(saludoDatosCID)
     )
   )
-  newGreetingCreatedEvent.parameters.push(
-    new ethereum.EventParam(
-      "greetingDataCID",
-      ethereum.Value.fromString(greetingDataCID)
-    )
+  nuevoSaludoCreadoEvent.parameters.push(
+    new ethereum.EventParam("saludador", ethereum.Value.fromAddress(saludador))
   )
-  newGreetingCreatedEvent.parameters.push(
+  nuevoSaludoCreadoEvent.parameters.push(
     new ethereum.EventParam(
-      "greetingOwner",
-      ethereum.Value.fromAddress(greetingOwner)
-    )
-  )
-  newGreetingCreatedEvent.parameters.push(
-    new ethereum.EventParam(
-      "timestamp",
-      ethereum.Value.fromUnsignedBigInt(timestamp)
+      "marcaDeTiempo",
+      ethereum.Value.fromUnsignedBigInt(marcaDeTiempo)
     )
   )
 
-  return newGreetingCreatedEvent
+  return nuevoSaludoCreadoEvent
 }
 
-export function createRecievedGreetingEvent(
-  greetingId: Bytes,
-  from: Address
-): RecievedGreeting {
-  let recievedGreetingEvent = changetype<RecievedGreeting>(newMockEvent())
+export function createSaludoRecibidoEvent(
+  saludoId: Bytes,
+  de: Address
+): SaludoRecibido {
+  let saludoRecibidoEvent = changetype<SaludoRecibido>(newMockEvent())
 
-  recievedGreetingEvent.parameters = new Array()
+  saludoRecibidoEvent.parameters = new Array()
 
-  recievedGreetingEvent.parameters.push(
-    new ethereum.EventParam(
-      "greetingId",
-      ethereum.Value.fromFixedBytes(greetingId)
-    )
+  saludoRecibidoEvent.parameters.push(
+    new ethereum.EventParam("saludoId", ethereum.Value.fromFixedBytes(saludoId))
   )
-  recievedGreetingEvent.parameters.push(
-    new ethereum.EventParam("from", ethereum.Value.fromAddress(from))
+  saludoRecibidoEvent.parameters.push(
+    new ethereum.EventParam("de", ethereum.Value.fromAddress(de))
   )
 
-  return recievedGreetingEvent
+  return saludoRecibidoEvent
 }

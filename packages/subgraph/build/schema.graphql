@@ -1,14 +1,13 @@
-type Greeting @entity {
+type Saludo @entity {
   id: ID!
-  greetingID:Bytes!
-  ownerAddress: Bytes!
+  saludoId:Bytes!
+  saludador: Bytes!
+  marcaDeTiempo: BigInt!
+  saludosRecibidos: BigInt!
   name: String
   age: String
   country: String
   crypto: String
   message: String
   imageURL: String
-  timestamp: BigInt!
-  totalRecieved: BigInt!
 }
-

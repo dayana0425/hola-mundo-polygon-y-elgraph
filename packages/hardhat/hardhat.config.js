@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 require("hardhat-abi-exporter");
 require("dotenv").config();
 
@@ -19,9 +20,8 @@ module.exports = {
     },
     mumbai: {
       url: process.env.MUMBAI_ALCHEMY_API_URL,
-      // accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       accounts: {
-        mnemonic: process.env.ADMIN_WALLET_SEED,
+        mnemonic: process.env.MNEMONIC,
       },
       gas: 2100000,
       gasPrice: 8000000000
@@ -37,6 +37,6 @@ module.exports = {
     pretty: false,
   },
   etherscan: {
-    api: process.env.POLYGONSCAN_KEY,
+    apiKey: process.env.POLYGONSCAN_API_KEY,
   },
 };

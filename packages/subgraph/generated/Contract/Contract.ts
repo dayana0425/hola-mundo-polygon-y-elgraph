@@ -10,59 +10,59 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class NewGreetingCreated extends ethereum.Event {
-  get params(): NewGreetingCreated__Params {
-    return new NewGreetingCreated__Params(this);
+export class NuevoSaludoCreado extends ethereum.Event {
+  get params(): NuevoSaludoCreado__Params {
+    return new NuevoSaludoCreado__Params(this);
   }
 }
 
-export class NewGreetingCreated__Params {
-  _event: NewGreetingCreated;
+export class NuevoSaludoCreado__Params {
+  _event: NuevoSaludoCreado;
 
-  constructor(event: NewGreetingCreated) {
+  constructor(event: NuevoSaludoCreado) {
     this._event = event;
   }
 
-  get greetingId(): Bytes {
+  get saludoId(): Bytes {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get greetingDataCID(): string {
+  get saludoDatosCID(): string {
     return this._event.parameters[1].value.toString();
   }
 
-  get greetingOwner(): Address {
+  get saludador(): Address {
     return this._event.parameters[2].value.toAddress();
   }
 
-  get timestamp(): BigInt {
+  get marcaDeTiempo(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 }
 
-export class RecievedGreeting extends ethereum.Event {
-  get params(): RecievedGreeting__Params {
-    return new RecievedGreeting__Params(this);
+export class SaludoRecibido extends ethereum.Event {
+  get params(): SaludoRecibido__Params {
+    return new SaludoRecibido__Params(this);
   }
 }
 
-export class RecievedGreeting__Params {
-  _event: RecievedGreeting;
+export class SaludoRecibido__Params {
+  _event: SaludoRecibido;
 
-  constructor(event: RecievedGreeting) {
+  constructor(event: SaludoRecibido) {
     this._event = event;
   }
 
-  get greetingId(): Bytes {
+  get saludoId(): Bytes {
     return this._event.parameters[0].value.toBytes();
   }
 
-  get from(): Address {
+  get de(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 }
 
-export class Contract__idToGreetingResult {
+export class Contract__todosSaludosResult {
   value0: Bytes;
   value1: string;
   value2: Address;
@@ -93,23 +93,23 @@ export class Contract__idToGreetingResult {
     return map;
   }
 
-  getGreetingId(): Bytes {
+  getSaludoId(): Bytes {
     return this.value0;
   }
 
-  getGreetingDataCID(): string {
+  getSaludoDatosCID(): string {
     return this.value1;
   }
 
-  getGreetingOwner(): Address {
+  getSaludador(): Address {
     return this.value2;
   }
 
-  getTimestamp(): BigInt {
+  getMarcaDeTiempo(): BigInt {
     return this.value3;
   }
 
-  getRecieved(): BigInt {
+  getSaludosRecibidos(): BigInt {
     return this.value4;
   }
 }
@@ -119,14 +119,14 @@ export class Contract extends ethereum.SmartContract {
     return new Contract("Contract", address);
   }
 
-  idToGreeting(param0: Bytes): Contract__idToGreetingResult {
+  todosSaludos(param0: Bytes): Contract__todosSaludosResult {
     let result = super.call(
-      "idToGreeting",
-      "idToGreeting(bytes32):(bytes32,string,address,uint256,uint256)",
+      "todosSaludos",
+      "todosSaludos(bytes32):(bytes32,string,address,uint256,uint256)",
       [ethereum.Value.fromFixedBytes(param0)]
     );
 
-    return new Contract__idToGreetingResult(
+    return new Contract__todosSaludosResult(
       result[0].toBytes(),
       result[1].toString(),
       result[2].toAddress(),
@@ -135,12 +135,12 @@ export class Contract extends ethereum.SmartContract {
     );
   }
 
-  try_idToGreeting(
+  try_todosSaludos(
     param0: Bytes
-  ): ethereum.CallResult<Contract__idToGreetingResult> {
+  ): ethereum.CallResult<Contract__todosSaludosResult> {
     let result = super.tryCall(
-      "idToGreeting",
-      "idToGreeting(bytes32):(bytes32,string,address,uint256,uint256)",
+      "todosSaludos",
+      "todosSaludos(bytes32):(bytes32,string,address,uint256,uint256)",
       [ethereum.Value.fromFixedBytes(param0)]
     );
     if (result.reverted) {
@@ -148,7 +148,7 @@ export class Contract extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Contract__idToGreetingResult(
+      new Contract__todosSaludosResult(
         value[0].toBytes(),
         value[1].toString(),
         value[2].toAddress(),
@@ -159,62 +159,62 @@ export class Contract extends ethereum.SmartContract {
   }
 }
 
-export class CreateNewGreetingCall extends ethereum.Call {
-  get inputs(): CreateNewGreetingCall__Inputs {
-    return new CreateNewGreetingCall__Inputs(this);
+export class CrearNuevoSaludoCall extends ethereum.Call {
+  get inputs(): CrearNuevoSaludoCall__Inputs {
+    return new CrearNuevoSaludoCall__Inputs(this);
   }
 
-  get outputs(): CreateNewGreetingCall__Outputs {
-    return new CreateNewGreetingCall__Outputs(this);
+  get outputs(): CrearNuevoSaludoCall__Outputs {
+    return new CrearNuevoSaludoCall__Outputs(this);
   }
 }
 
-export class CreateNewGreetingCall__Inputs {
-  _call: CreateNewGreetingCall;
+export class CrearNuevoSaludoCall__Inputs {
+  _call: CrearNuevoSaludoCall;
 
-  constructor(call: CreateNewGreetingCall) {
+  constructor(call: CrearNuevoSaludoCall) {
     this._call = call;
   }
 
-  get greetingDataCID(): string {
+  get saludoDatosCID(): string {
     return this._call.inputValues[0].value.toString();
   }
 }
 
-export class CreateNewGreetingCall__Outputs {
-  _call: CreateNewGreetingCall;
+export class CrearNuevoSaludoCall__Outputs {
+  _call: CrearNuevoSaludoCall;
 
-  constructor(call: CreateNewGreetingCall) {
+  constructor(call: CrearNuevoSaludoCall) {
     this._call = call;
   }
 }
 
-export class SendGreetingCall extends ethereum.Call {
-  get inputs(): SendGreetingCall__Inputs {
-    return new SendGreetingCall__Inputs(this);
+export class EnviarSaludoCall extends ethereum.Call {
+  get inputs(): EnviarSaludoCall__Inputs {
+    return new EnviarSaludoCall__Inputs(this);
   }
 
-  get outputs(): SendGreetingCall__Outputs {
-    return new SendGreetingCall__Outputs(this);
+  get outputs(): EnviarSaludoCall__Outputs {
+    return new EnviarSaludoCall__Outputs(this);
   }
 }
 
-export class SendGreetingCall__Inputs {
-  _call: SendGreetingCall;
+export class EnviarSaludoCall__Inputs {
+  _call: EnviarSaludoCall;
 
-  constructor(call: SendGreetingCall) {
+  constructor(call: EnviarSaludoCall) {
     this._call = call;
   }
 
-  get greetingId(): Bytes {
+  get saludoId(): Bytes {
     return this._call.inputValues[0].value.toBytes();
   }
 }
 
-export class SendGreetingCall__Outputs {
-  _call: SendGreetingCall;
+export class EnviarSaludoCall__Outputs {
+  _call: EnviarSaludoCall;
 
-  constructor(call: SendGreetingCall) {
+  constructor(call: EnviarSaludoCall) {
     this._call = call;
   }
 }

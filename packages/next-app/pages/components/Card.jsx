@@ -19,14 +19,13 @@ import { contractAddress } from '../../utils/contractAddress.js';
 import contractABI from '../../contracts/ABI/HolaMundo.json';
 
 
-export default function Card({ greetingID, ownerAddress, country, name, age, message, crypto, imageURL, timestamp, totalRecieved, totalSent }) {
-    // Chakura-UI Toast Messages
+export default function Card({ greetingID, ownerAddress, country, name, age, message, crypto, imageURL, timestamp, totalRecieved }) {
+
     const toast = useToast();
-    // Transaction States
+
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(null);
 
-    // Connect To Contract
     const signer = useSigner();
     const contractOnMumbai = useContract({
         addressOrName: contractAddress,
@@ -34,7 +33,6 @@ export default function Card({ greetingID, ownerAddress, country, name, age, mes
         signerOrProvider: signer.data,
     });
 
-    // Toasts for Transaction States
     useEffect(() => {
         if(success) {
             toast({
@@ -56,15 +54,12 @@ export default function Card({ greetingID, ownerAddress, country, name, age, mes
         }
     }, [success, loading]);
 
-    // Send Greeting
-    const sendGreeting = async (cid) => {
+    const enviarSaludo = async (cid) => {
         try {
-            // Reset
             setSuccess(false)
             setLoading(false)
             if (contractOnMumbai) {
-            // Calling smart contract function: sendGreeting
-            const txn = await contractOnMumbai.sendGreeting(greetingID,{ gasLimit: 900000 });
+            const txn = await contractOnMumbai.enviarSaludo(greetingID,{ gasLimit: 900000 });
             setLoading(true);
             await txn.wait();
             setLoading(false);
@@ -99,7 +94,7 @@ export default function Card({ greetingID, ownerAddress, country, name, age, mes
                 pos={'relative'}
             />
             <Heading fontSize={'2xl'} fontFamily={'body'}> Hola Mundo! 🌎 </Heading>
-            {/* ABOUT ME */}
+            {/* Sobre Mí */}
             <Accordion allowToggle>
                 <AccordionItem>
                     <AccordionButton _expanded={{ bg: 'purple.200', color: 'purple.500'}}>
@@ -118,9 +113,9 @@ export default function Card({ greetingID, ownerAddress, country, name, age, mes
                     </AccordionPanel>
                 </AccordionItem>
             </Accordion>
-            {/* RECIEVED GREETINGS */}
+            {/* RECIBIDO SALUDOS */}
             <CardText boldText={"Recibido:"} text={totalRecieved}/>
-            {/* SEND GREETING */}
+            {/* ENVIAR SALUDO */}
             <Button
                 flex={1}
                 fontSize={'sm'}
@@ -129,8 +124,8 @@ export default function Card({ greetingID, ownerAddress, country, name, age, mes
                 bg="purple.400"
                 color="white"
                 _hover={{ bg: 'blue.500' }}
-                onClick={(e)=> sendGreeting(e)}>
-                Manda Saludos 👋
+                onClick={(e)=> enviarSaludo(e)}>
+                Enviar Saludo 👋
             </Button>
         </Box>
       </Center>

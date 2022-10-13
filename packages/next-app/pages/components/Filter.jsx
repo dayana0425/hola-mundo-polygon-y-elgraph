@@ -12,152 +12,161 @@ import {
 } from "@chakra-ui/react";
 import { gql, useQuery } from "@apollo/client";
 import Card from "./Card";
-import countriesJSON from '../../data/countries.json';
-import cryptocurrenciesJSON from '../../data/cryptocurrencies.json';
+import countriesJSON from '../../data/countries.json'; // lista de paises
+import cryptocurrenciesJSON from '../../data/cryptocurrencies.json'; // lista de criptomonedas
+    // ~todos los saludos 
+    const ALL_GREETINGS = gql`
+        query getGreetings {
+            saludos {
+                saludoId
+                saludador
+                marcaDeTiempo
+                saludosRecibidos
+                imageURL
+                country
+                name
+                age
+                message
+                crypto
+            }
+        }
+    `;
 
-  const ALL_GREETINGS = gql`
-      query getGreetings {
-          greetings {
-            greetingID
-            ownerAddress
-            country
-            name
-            age
-            message
-            crypto
-            imageURL
-            timestamp
-            totalRecieved
-          }
+    // saludos desde las ultimas 24 horas
+    const PAST_24_HOURS_GREETINGS = gql`
+        query getGreetings($yesterdayTimestamp: String) { 
+            saludos(where: {marcaDeTiempo_gt: $yesterdayTimestamp }) {
+                saludoId
+                saludador
+                marcaDeTiempo
+                saludosRecibidos
+                imageURL
+                country
+                name
+                age
+                message
+                crypto
+            }
         }
-      `;
-  
-  const PAST_24_HOURS_GREETINGS = gql`
-    query getGreetings($yesterdayTimestamp: String) {
-        greetings(where: {timestamp_gt: $yesterdayTimestamp }) {
-            greetingID
-            ownerAddress
-            country
-            name
-            age
-            message
-            crypto
-            imageURL
-            timestamp
-            totalRecieved
-        }
-    }
-  `;
-  
-  const CRYPTO_AND_COUNTRY_GREETINGS = gql`
-    query getGreetings($faveCrypto: String, $personCountry: String) {
-        greetings(where: {crypto: $faveCrypto, country: $personCountry}) {
-            greetingID
-            ownerAddress
-            country
-            name
-            age
-            message
-            crypto
-            imageURL
-            timestamp
-            totalRecieved
-        }
-    }
-  `;
+    `;
 
-const COUNTRY_GREETINGS = gql`
-    query getGreetings($personCountry: String) {
-        greetings(where: {country: $personCountry }) {
-            greetingID
-            ownerAddress
-            country
-            name
-            age
-            message
-            crypto
-            imageURL
-            timestamp
-            totalRecieved
+    // ~todos los saludos que coincidan con cripto y pais
+    const CRYPTO_AND_COUNTRY_GREETINGS = gql`
+        query getGreetings($faveCrypto: String, $personCountry: String) {
+            saludos(where: {crypto: $faveCrypto, country: $personCountry}) {
+                saludoId
+                saludador
+                marcaDeTiempo
+                saludosRecibidos
+                imageURL
+                country
+                name
+                age
+                message
+                crypto
+            }
         }
-    }
-`;
+    `;
 
-const CRYPTO_GREETINGS = gql`
-    query getGreetings($faveCrypto: String) {
-        greetings(where: {crypto: $faveCrypto }) {
-            greetingID
-            ownerAddress
-            country
-            name
-            age
-            message
-            crypto
-            imageURL
-            timestamp
-            totalRecieved
+    // saludos que coinciden con el país
+    const COUNTRY_GREETINGS = gql`
+        query getGreetings($personCountry: String) {
+            saludos(where: {country: $personCountry }) {
+                saludoId
+                saludador
+                marcaDeTiempo
+                saludosRecibidos
+                imageURL
+                country
+                name
+                age
+                message
+                crypto
+            }
         }
-    }
-`;
+    `;
 
-const SORT_GREETINGS = gql`
-    query getGreetings {
-        greetings(orderBy: totalRecieved orderDirection: desc) {
-            greetingID
-            ownerAddress
-            country
-            name
-            age
-            message
-            crypto
-            imageURL
-            timestamp
-            totalRecieved
+    // saludos que coinciden con cripto
+    const CRYPTO_GREETINGS = gql`
+        query getGreetings($faveCrypto: String) {
+            saludos(where: {crypto: $faveCrypto }) {
+                saludoId
+                saludador
+                marcaDeTiempo
+                saludosRecibidos
+                imageURL
+                country
+                name
+                age
+                message
+                crypto
+            }
         }
-    }
-`;
+    `;
+
+    // ordenar saludos
+    const SORT_GREETINGS = gql`
+        query getGreetings {
+            saludos(orderBy: saludosRecibidos orderDirection: desc) {
+                saludoId
+                saludador
+                marcaDeTiempo
+                saludosRecibidos
+                imageURL
+                country
+                name
+                age
+                message
+                crypto
+            }
+        }
+    `;
 
   
   function Filter() {
     const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
-    const yesterdayInSecs = Math.floor((new Date().getTime() / 1000) - 86400); // timestamps in solidity are in seconds
-    const [yesterdayTimestamp, setYesturdayTimestamp] = useState(yesterdayInSecs.toString());
-    const [personCountry, setCountry] = useState("");
-    const [faveCrypto, setCrypto] = useState("");
-    const [timeSelected, setTime] = useState("");
+    const yesterdayInSecs = Math.floor((new Date().getTime() / 1000) - 86400); // las marcas de tiempo en Solidity están en segundos, por lo que debemos convertirlas a milisegundos
+    const [yesterdayTimestamp] = useState(yesterdayInSecs.toString());
+    const [personCountry, setCountry] = useState(""); // pais de person
+    const [faveCrypto, setCrypto] = useState(""); // favorito cripto
+    const [other, setOther] = useState(""); // otro
 
+    // query de cripto y país usando las variables 'faveCrypto' y 'personCountry' como entrada
     const cryptoAndCountryQuery = useQuery(CRYPTO_AND_COUNTRY_GREETINGS, {
-        variables: { 
+        variables: {
             faveCrypto,
             personCountry
         }
     });
-    
+    // query de cripto usando el variable 'faveCrypto'
     const cryptoQuery = useQuery(CRYPTO_GREETINGS, {
         variables: { 
             faveCrypto
         }
     });
-
+    // query de pais usando el variable 'personCountry'
     const countryQuery = useQuery(COUNTRY_GREETINGS, {
         variables: { 
             personCountry
         }
     });
 
+    // query de todos los saludos
     const allGreetingsQuery = useQuery(ALL_GREETINGS);
 
+    // query de todos los saludos de ayer
     const yesterdayQuery = useQuery(PAST_24_HOURS_GREETINGS, {        
         variables: { 
             yesterdayTimestamp
         }
     })
-
+    // query para ordena los saludos
     const sortQuery = useQuery(SORT_GREETINGS);
-    console.log(timeSelected)
+
+    console.log(allGreetingsQuery)
     return (
       <div>
-        {/* FILTERING OPTIONS */}
+        {/* OPCIONES DE FILTRO */}
         <Flex 
             align="center" 
             justify="center">
@@ -183,7 +192,7 @@ const SORT_GREETINGS = gql`
                             })}
                     </Select>
                     </FormControl>
-                    {/* FIELD: CRIPTO */}
+                    {/* Campo de Entrada: CRIPTO */}
                     <FormControl>
                     <FormLabel>Criptomoneda Favorita</FormLabel>
                     <Select
@@ -197,12 +206,12 @@ const SORT_GREETINGS = gql`
                             })}
                     </Select>
                     </FormControl>
-                    {/* FIELD: OTHER */}
+                    {/* Campo de Entrada: OTRO */}
                     <FormControl>
-                    <FormLabel>Tiempo Creado</FormLabel>
+                    <FormLabel>Otro</FormLabel>
                     <Select
                         id={"Other"}
-                        onChange={(e) => setTime(e.target.value)}
+                        onChange={(e) => setOther(e.target.value)}
                         placeholder='Seleccione Una Opción'>
                             <option>
                                 Ultimas 24 Horas
@@ -215,122 +224,116 @@ const SORT_GREETINGS = gql`
                 </Stack>
             </Box>
         </Flex>
-        {/* DASHBOARD */}
+        {/* TABLERO */}
         <SimpleGrid minChildWidth='300px' spacing='40px'>
             { faveCrypto 
-            && personCountry 
+            && personCountry
+            && other == ""
             && cryptoAndCountryQuery.data 
-            && timeSelected == ""
-            && cryptoAndCountryQuery.data.greetings.map((greeting) => (
+            && cryptoAndCountryQuery.data.saludos.map((saludo) => (
                 <Card
-                    key={greeting.greetingID}
-                    greetingID={greeting.greetingID}
-                    ownerAddress={greeting.ownerAddress}
-                    country={greeting.country}
-                    name={greeting.name}
-                    age={greeting.age}
-                    message={greeting.message}
-                    crypto={greeting.crypto}
-                    imageURL={greeting.imageURL}
-                    timestamp={greeting.timestamp}
-                    totalRecieved={greeting.totalRecieved}
-                    totalSent={greeting.totalSent}> 
+                    key={saludo.saludoId}
+                    greetingID={saludo.saludoId}
+                    ownerAddress={saludo.saludador}
+                    country={saludo.country}
+                    name={saludo.name}
+                    age={saludo.age}
+                    message={saludo.message}
+                    crypto={saludo.crypto}
+                    imageURL={saludo.imageURL}
+                    timestamp={saludo.marcaDeTiempo}
+                    totalRecieved={saludo.saludosRecibidos}> 
                 </Card>))
             }
             { faveCrypto 
             && personCountry == ""
+            && other == ""
             && cryptoQuery.data 
-            && timeSelected == ""
-            && cryptoQuery.data.greetings.map((greeting) => (
+            && cryptoQuery.data.saludos.map((saludo) => (
                 <Card
-                    key={greeting.greetingID}
-                    greetingID={greeting.greetingID}
-                    ownerAddress={greeting.ownerAddress}
-                    country={greeting.country}
-                    name={greeting.name}
-                    age={greeting.age}
-                    message={greeting.message}
-                    crypto={greeting.crypto}
-                    imageURL={greeting.imageURL}
-                    timestamp={greeting.timestamp}
-                    totalRecieved={greeting.totalRecieved}
-                    totalSent={greeting.totalSent}> 
+                    key={saludo.saludoId}
+                    greetingID={saludo.saludoId}
+                    ownerAddress={saludo.saludador}
+                    country={saludo.country}
+                    name={saludo.name}
+                    age={saludo.age}
+                    message={saludo.message}
+                    crypto={saludo.crypto}
+                    imageURL={saludo.imageURL}
+                    timestamp={saludo.marcaDeTiempo}
+                    totalRecieved={saludo.saludosRecibidos}> 
                 </Card>))
             }
             { faveCrypto == "" 
-            && personCountry 
+            && personCountry
+            && other == ""
             && countryQuery.data 
-            && timeSelected == ""
-            && countryQuery.data.greetings.map((greeting) => ( 
+            && countryQuery.data.saludos.map((saludo) => ( 
                 <Card
-                    key={greeting.greetingID}
-                    greetingID={greeting.greetingID}
-                    ownerAddress={greeting.ownerAddress}
-                    country={greeting.country}
-                    name={greeting.name}
-                    age={greeting.age}
-                    message={greeting.message}
-                    crypto={greeting.crypto}
-                    imageURL={greeting.imageURL}
-                    timestamp={greeting.timestamp}
-                    totalRecieved={greeting.totalRecieved}
-                    totalSent={greeting.totalSent}> 
+                    key={saludo.saludoId}
+                    greetingID={saludo.saludoId}
+                    ownerAddress={saludo.saludador}
+                    country={saludo.country}
+                    name={saludo.name}
+                    age={saludo.age}
+                    message={saludo.message}
+                    crypto={saludo.crypto}
+                    imageURL={saludo.imageURL}
+                    timestamp={saludo.marcaDeTiempo}
+                    totalRecieved={saludo.saludosRecibidos}>  
                 </Card>))
             }
             { faveCrypto == "" 
             && personCountry == ""
-            && timeSelected == ""
+            && other == ""
             && allGreetingsQuery.data 
-            && allGreetingsQuery.data.greetings.map((greeting) => ( 
+            && allGreetingsQuery.data.saludos.map((saludo) => ( 
                 <Card
-                    key={greeting.greetingID}
-                    greetingID={greeting.greetingID}
-                    ownerAddress={greeting.ownerAddress}
-                    country={greeting.country}
-                    name={greeting.name}
-                    age={greeting.age}
-                    message={greeting.message}
-                    crypto={greeting.crypto}
-                    imageURL={greeting.imageURL}
-                    timestamp={greeting.timestamp}
-                    totalRecieved={greeting.totalRecieved}
-                    totalSent={greeting.totalSent}> 
+                    key={saludo.saludoId}
+                    greetingID={saludo.saludoId}
+                    ownerAddress={saludo.saludador}
+                    country={saludo.country}
+                    name={saludo.name}
+                    age={saludo.age}
+                    message={saludo.message}
+                    crypto={saludo.crypto}
+                    imageURL={saludo.imageURL}
+                    timestamp={saludo.marcaDeTiempo}
+                    totalRecieved={saludo.saludosRecibidos}> 
                 </Card>))
             }
-            { timeSelected == "Ultimas 24 Horas"
+            { other == "Ultimas 24 Horas"
             && yesterdayQuery.data 
-            && yesterdayQuery.data.greetings.map((greeting) => ( 
+            && yesterdayQuery.data.saludos.map((saludo) => ( 
                 <Card
-                    key={greeting.greetingID}
-                    greetingID={greeting.greetingID}
-                    ownerAddress={greeting.ownerAddress}
-                    country={greeting.country}
-                    name={greeting.name}
-                    age={greeting.age}
-                    message={greeting.message}
-                    crypto={greeting.crypto}
-                    imageURL={greeting.imageURL}
-                    timestamp={greeting.timestamp}
-                    totalRecieved={greeting.totalRecieved}
-                    totalSent={greeting.totalSent}> 
+                    key={saludo.saludoId}
+                    greetingID={saludo.saludoId}
+                    ownerAddress={saludo.saludador}
+                    country={saludo.country}
+                    name={saludo.name}
+                    age={saludo.age}
+                    message={saludo.message}
+                    crypto={saludo.crypto}
+                    imageURL={saludo.imageURL}
+                    timestamp={saludo.marcaDeTiempo}
+                    totalRecieved={saludo.saludosRecibidos}> 
                 </Card>))
             }
-            { timeSelected == "Ordenar Por Saludos Recibidos"
+            { other == "Ordenar Por Saludos Recibidos"
             && sortQuery.data 
-            && sortQuery.data.greetings.map((greeting) => ( 
+            && sortQuery.data.saludos.map((saludo) => ( 
                 <Card
-                    key={greeting.greetingID}
-                    greetingID={greeting.greetingID}
-                    ownerAddress={greeting.ownerAddress}
-                    country={greeting.country}
-                    name={greeting.name}
-                    age={greeting.age}
-                    message={greeting.message}
-                    crypto={greeting.crypto}
-                    imageURL={greeting.imageURL}
-                    timestamp={greeting.timestamp}
-                    totalRecieved={greeting.totalRecieved}
-                    totalSent={greeting.totalSent}> 
+                    key={saludo.saludoId}
+                    greetingID={saludo.saludoId}
+                    ownerAddress={saludo.saludador}
+                    country={saludo.country}
+                    name={saludo.name}
+                    age={saludo.age}
+                    message={saludo.message}
+                    crypto={saludo.crypto}
+                    imageURL={saludo.imageURL}
+                    timestamp={saludo.marcaDeTiempo}
+                    totalRecieved={saludo.saludosRecibidos}> 
                 </Card>))
             }
         </SimpleGrid>

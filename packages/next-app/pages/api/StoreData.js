@@ -1,18 +1,17 @@
 import { Web3Storage, File, getFilesFromPath } from "web3.storage";
 const { resolve } = require("path");
 
-export default async function handler(req, res) {
-    if (req.method === "POST") {
-      return await storeGreetingData(req, res);
-    } else {
-      return res
-        .status(405)
-        .json({ message: "Method not allowed", success: false });
-    }
-}
+  export default async function handler(req, res) {
+      if (req.method === "POST") {
+        return await storeData(req, res);
+      } else {
+        return res
+          .status(405)
+          .json({ message: "Method not allowed", success: false });
+      }
+  }
 
-
-async function storeGreetingData(req, res) {
+  async function storeData(req, res) {
     const body = req.body;
     try {
       const files = await makeFileObjects(body);
@@ -35,13 +34,12 @@ async function storeGreetingData(req, res) {
     return files;
   }
 
-
-function makeStorageClient() {
+  function getStorageClient() {
     return new Web3Storage({ token: process.env.WEB3STORAGE_TOKEN });
-}
+  }
 
-async function storeFiles(files) {
-    const client = makeStorageClient();
+  async function storeFiles(files) {
+    const client = getStorageClient();
     const cid = await client.put(files);
     return cid;
-}
+  }

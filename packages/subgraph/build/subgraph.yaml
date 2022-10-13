@@ -8,21 +8,21 @@ dataSources:
     name: Contract
     network: mumbai
     source:
-      address: "0xB528596E54d3fcd239cEe4e09B55d986EA0a2c17"
+      address: "0xa94F1Cc522A736C048A09B915633bE594D8DF914"
       abi: Contract
-      startBlock: 28485376
+      startBlock: 28586871
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - Greeting
+        - Saludo
       abis:
         - name: Contract
           file: Contract/abis/Contract.json
       eventHandlers:
-        - event: NewGreetingCreated(bytes32,string,address,uint256)
-          handler: handleNewGreetingCreated
-        - event: RecievedGreeting(bytes32,address)
-          handler: handleRecievedGreeting
+        - event: NuevoSaludoCreado(bytes32,string,address,uint256)
+          handler: handleNuevoSaludoCreado
+        - event: SaludoRecibido(bytes32,address)
+          handler: handleSaludoRecibido
       file: Contract/Contract.wasm

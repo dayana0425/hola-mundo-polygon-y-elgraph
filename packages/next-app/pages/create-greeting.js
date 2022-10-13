@@ -37,10 +37,10 @@ import {
   import contractABI from '../contracts/ABI/HolaMundo.json';
 
   export default function Form() {
-    // Chakura-UI Toast Messages
+
     const toast = useToast();
 
-    // Toast For Every Page Render
+    // Toast para cada procesamiento de página
     useEffect(() => {
         toast({
           title: "Connect Wallet",
@@ -52,17 +52,18 @@ import {
         });
       }, []);
 
-    // Transaction States
+    // Estados de transacción
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(null);
-    // Form States
+
+    // Estados de formulario
     const [personName, setName] = useState("");
     const [personAge, setAge] = useState("");
     const [personCountry, setCountry] = useState("");
     const [faveCrypto, setCrypto] = useState("");
     const [message, setMessage] = useState("");
 
-    // Connect To Contract
+    // Conectar al contrato
     const signer = useSigner();
     const contractOnMumbai = useContract({
       addressOrName: contractAddress,
@@ -70,7 +71,7 @@ import {
       signerOrProvider: signer.data,
     });
 
-  // Toasts for Transaction States
+  // Toasts para cambios de estado de transacción
   useEffect(() => {
     if(success) {
       toast({
@@ -92,65 +93,64 @@ import {
     }
   }, [success, loading]);
 
-    // Handle Submit
-    async function handleSubmit(e) {
-      e.preventDefault();
+  // Guardando informacion del usuario en Web3Storage
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-      const body = {
-        name: personName,
-        age: personAge,
-        country: personCountry,
-        crypto: faveCrypto,
-        formMessage: message,
-        image: getRandomImage()
-      };
-
-      console.log("BODY: ", body);
-
-      try {
-        // Save Form Details In IPFS
-        const response = await fetch("/api/store-greeting", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
-
-        if (response.status !== 200) {
-          alert("Oops! Something went wrong. Please refresh & try again.");
-        } else {
-          let responseJSON = await response.json();
-          await createGreeting(responseJSON.cid);
-          console.log("Saved in IPFS: ", responseJSON.cid);
-        }
-      } catch (error) {
-        alert("Oops! Something went wrong. Please refresh & try again.");
-      }
-    }
-
-    // Create Greeting
-    const createGreeting = async (cid) => {
-      try {
-        // Reset
-        setSuccess(false)
-        setLoading(false)
-        if (contractOnMumbai) {
-          // Calling smart contract function: createNewGreeting
-          const txn = await contractOnMumbai.createNewGreeting(cid,{ gasLimit: 900000 });
-          setLoading(true);
-          await txn.wait();
-          setLoading(false);
-          setSuccess(true);
-        } else {
-          setSuccess(false)
-          setLoading(false)
-          alert("Oops! Something went wrong. Please refresh & try again.");
-        }
-      } catch (error) {
-        setSuccess(false)
-        setLoading(false)
-        alert("Oops! Something went wrong. Please refresh & try again.");
-      }
+    const body = {
+      name: personName,
+      age: personAge,
+      country: personCountry,
+      crypto: faveCrypto,
+      formMessage: message,
+      image: getRandomImage()
     };
+
+    console.log("BODY: ", body);
+
+    try {
+      const response = await fetch("/api/StoreData", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (response.status !== 200) {
+        alert("Oops! Something went wrong. Please refresh & try again.");
+      } else {
+        let responseJSON = await response.json();
+        await createGreeting(responseJSON.cid);
+        console.log("Guardado en IPFS: ", responseJSON.cid);
+      }
+    } catch (error) {
+      alert("Oops! Something went wrong. Please refresh & try again.");
+    }
+  }
+
+  // Crear Saludo => Llamando Funcion en nuestro contrato intelligente
+  const createGreeting = async (cid) => {
+    try {
+      // Reset
+      setSuccess(false)
+      setLoading(false)
+      if (contractOnMumbai) {
+        // Llamando a la función de contrato inteligente: crearNuevoSaludo
+        const txn = await contractOnMumbai.crearNuevoSaludo(cid,{ gasLimit: 900000 });
+        setLoading(true);
+        await txn.wait();
+        setLoading(false);
+        setSuccess(true);
+      } else {
+        setSuccess(false)
+        setLoading(false)
+        alert("Oops! Something went wrong. Please refresh & try again.");
+      }
+    } catch (error) {
+      setSuccess(false)
+      setLoading(false)
+      alert("Oops! Something went wrong. Please refresh & try again.");
+    }
+  };
 
     // UI
     return (
@@ -167,7 +167,7 @@ import {
           p={{ base: 5, lg: 16 }}>
           <Box>
             <VStack spacing={{ base: 2, md: 4, lg: 8 }}>
-              {/* TITLE */}
+              {/* TÍTULO */}
               <Heading
                 className={"text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"}
                 fontSize={{
@@ -176,7 +176,7 @@ import {
                 }}>
                 Saluda al Mundo 👋
               </Heading>
-              {/* FORM */}
+              {/* FORMA */}
               <Stack
                 spacing={{ base: 4, md: 7, lg: 10 }}
                 direction={{ base: 'column', md: 'row' }}>
@@ -187,7 +187,7 @@ import {
                   p={8}
                   color={useColorModeValue('gray.700', 'whiteAlpha.900')}
                   shadow="base">
-                  {/* FIELD: NOMBRE */}
+                  {/* CAMPO: NOMBRE */}
                   <VStack spacing={5}>][]
                     <FormControl isRequired>
                       <FormLabel>Nombre</FormLabel>
@@ -203,7 +203,7 @@ import {
                         />
                       </InputGroup>
                     </FormControl>
-                    {/* FIELD: EDAD */}
+                    {/* CAMPO: EDAD */}
                     <FormControl isRequired>
                       <FormLabel>Edad</FormLabel>
                       <NumberInput 
@@ -217,7 +217,7 @@ import {
                         </NumberInputStepper>
                     </NumberInput>
                     </FormControl>
-                    {/* FIELD: PAÍS*/}
+                    {/* CAMPO: PAÍS*/}
                     <FormControl isRequired>
                       <FormLabel>País</FormLabel>
                         <Select
@@ -228,7 +228,7 @@ import {
                             })}
                         </Select>
                     </FormControl>
-                    {/* FIELD: CRIPTO*/}
+                    {/* CAMPO: CRIPTO*/}
                     <FormControl isRequired>
                       <FormLabel>¿Cuál Es Tu Criptomoneda Favorita?</FormLabel>
                       <Select 
@@ -239,7 +239,7 @@ import {
                             })}
                         </Select>
                     </FormControl>
-                    {/* FIELD: MENSAJE */}
+                    {/* CAMPO: MENSAJE */}
                     <FormControl isRequired>
                       <FormLabel>Mensaje</FormLabel>
                       <Textarea
@@ -250,7 +250,7 @@ import {
                         resize="none"
                       />
                     </FormControl>
-                    {/* SUBMIT */}
+                    {/* ENVIAR */}
                     <Button
                       colorScheme="blue"
                       bg="blue.400"
