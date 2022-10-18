@@ -17,6 +17,8 @@ Aprende a hacer lo siguiente:
 * Aprenda a buscar, filtrar y ordenar sus datos usando The Graph.
 </p>
 
+[Diapositivas de Presentación](https://www.canva.com/design/DAFOY1CU5uM/WO7gJmknXlaF4YmR6e9l3A/view?website#2)
+
 [Subgraph](https://thegraph.com/hosted-service/subgraph/dayana0425/holamundosubgraph)
 
 [Contrato Inteligente](https://mumbai.polygonscan.com/address/0xa94F1Cc522A736C048A09B915633bE594D8DF914)
