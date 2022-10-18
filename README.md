@@ -1,7 +1,7 @@
 # Hola Mundo DApp 👋 
 ### Desarrollo de Blockchain de Pila Completa en Español ✨
 
-### English Version: [Hello World DApp](https://github.com/dayana0425/hola-mundo-polygon-y-elgraph)
+### English Version: [Hello World DApp](https://github.com/dayana0425/hello-world-polygon-and-thegraph)
 
 ![Figure 1](./images/HolaMundoScreenshot.png)
 
