@@ -227,3 +227,4 @@ https://project-cradl.notion.site/Welcome-to-Web3athon-e0b17fe0a41b441fb33e6154a
 ---
 
 # 🚀 WAGMI
+# theLovelaceProject
